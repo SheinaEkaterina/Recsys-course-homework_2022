@@ -3,13 +3,16 @@ import numpy as np
 import pandas as pd
 
 
-def feature_engineering(df: pd.DataFrame) -> pd.DataFrame:
+def feature_engineering(df: pd.DataFrame, drop_ids: bool = True
+                        ) -> pd.DataFrame:
     df_new = deepcopy(df)
     df_new.drop("impressions", axis=1, inplace=True)
     process_date_time(df_new)
     process_os_id(df_new)
     process_country_id(df_new)
     process_campaign_clicks(df_new)
+    if drop_ids:
+        df_new.drop(columns=["zone_id", "banner_id"], inplace=True)
     return df_new
 
 
