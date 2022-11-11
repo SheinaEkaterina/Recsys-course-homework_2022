@@ -3,7 +3,7 @@ import datetime as dtime
 import numpy as np
 import sklearn.metrics as metrics
 from sklearn.model_selection import cross_val_score
-from sklearn.linear_model import LogisticRegression, ElasticNet
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import log_loss, roc_auc_score
 import math
 
@@ -114,11 +114,11 @@ def train_test_split(data: pd.DataFrame):
     return X_train, Y_train, X_test, Y_test
 
 
-def create_model(X_train: pd.DataFrame, Y_train: pd.DataFrame, l1_ratio=0.6, alpha=0.5):
-    # model = LogisticRegression(penalty='elasticnet', solver='saga', l1_ratio=l1_ratio)
-    # model = ElasticNet(alpha=alpha, l1_ratio=l1_ratio)
-    model = LogisticRegression()
-    model.fit(X_train, Y_train)
+def create_model( l2_ratio=0.6):
+    """ solver saga,  sag в нашем случае не подойдет из-за разного масштаба фичей, который портит сходимость
+     Попробуем использовать liblinear
+     В качестве регуляризаци используем ridge"""
+    model = LogisticRegression(penalty='l2', solver='liblinear', l1_ratio=l2_ratio)
     return model
 
 
@@ -134,23 +134,20 @@ def test_model(model, X_test: pd.DataFrame, Y_test: pd.DataFrame):
 def test_baseline(data):
     true_labels = data.loc[:, 'clicks']
     baseline_pred = data.loc[:, 'baseline']
-    fpr, tpr, thresholds = metrics.roc_curve(true_labels, baseline_pred, pos_label=2)
-    auc = metrics.auc(fpr, tpr)
+    auc = roc_auc_score(true_labels, baseline_pred)
     print(f"Log loss: {log_loss(true_labels, baseline_pred)}")
     print(f"Auc: {auc}")
 
 
 def cv(X_train: pd.DataFrame, Y_train: pd.DataFrame, metric: str):
     scores = dict()
-    for l1_ratio in np.linspace(0, 1, 5):
-        for alpha in np.linspace(0.2, 1, 4):
-            # regr = LogisticRegression(penalty='elasticnet', solver='saga', l1_ratio=l1_ratio)
-            regr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio)
-            regr.fit(X_train, Y_train)
-            score = cross_val_score(regr, X_train, Y_train, n_jobs=-1, cv=3, scoring=metric)
-            scores[(l1_ratio, alpha)] = np.mean(score)
-            print(f"Alpha: {alpha}, L1: {l1_ratio}, score: {score}")
+    for l2_ratio in [0.0001, 0.001, 0.01, 0.1, 1, 10]:
+        regr = create_model(l2_ratio)
+        regr.fit(X_train, Y_train)
+        score = cross_val_score(regr, X_train, Y_train, n_jobs=-1, cv=3, scoring=metric)
+        scores[l2_ratio] = np.mean(score)
+        print(f"L2: {l2_ratio}, score: {score}")
 
     opt_params = max(scores, key=scores.get)
-    l1_ratio, alpha = opt_params
-    return l1_ratio, alpha
+    l1_ratio = opt_params
+    return l1_ratio
