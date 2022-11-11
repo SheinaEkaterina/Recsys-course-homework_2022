@@ -8,8 +8,8 @@ from sklearn.metrics import log_loss, roc_auc_score
 import math
 
 features = ['zone_id', 'campaign_clicks', 'os_id', 'country_id', 'banner_id',
-            'time_of_day', 'is_weekend', '15_av_clicks_country', '15_av_clicks_os',
-            '15_av_clicks_month', 'month']
+            'time_of_day', 'is_weekend', 'av_clicks_country', 'av_clicks_os',
+            'av_clicks_month', 'month']
 
 
 def analysis(data: pd.DataFrame):
@@ -39,7 +39,7 @@ def baseline(data: pd.DataFrame):
     return data
 
 
-def avg(data: pd.DataFrame, slice_col: str, feature: str = 'clicks', number_rows: int = 15):
+def avg(data: pd.DataFrame, slice_col: str, feature: str = 'clicks', number_rows: int = 40):
     """Оконная функция для посдсчета среднего значения feature с размером окна number_rows
     по срезу данных по признаку slice_col """
     col_name = 'avg_' + str(number_rows) + '_' + feature
@@ -48,7 +48,7 @@ def avg(data: pd.DataFrame, slice_col: str, feature: str = 'clicks', number_rows
                .sort_values(['banner_id', slice_col, 'date_time'], ascending=[True, True, True])
                .groupby(['banner_id', slice_col], sort=False)
                [feature]
-               .rolling(number_rows, min_periods=number_rows - 1)
+               .rolling(number_rows, min_periods=number_rows//2)
                .mean()
                .reset_index()
                .rename(columns={'level_1': 'index',
@@ -62,9 +62,9 @@ def feature_engineering(data: pd.DataFrame) -> pd.DataFrame:
     time_of_day - время суток показа баннера (для сохранения цикличности берем косинус от этой фичи)
     is_weekend - выходной или нет 1/0
     month - месяц показа рекламы (месяца всего 2 в данных - октябрь и сентябрь)
-    15_av_clicks_os - среднее кликов для баннера, сделанное с данной операционной системы, за последние 15 показов
-    15_av_clicks_country - среднее кликов для баннера, сделанное из данной страны, за последние 15 показов
-    15_av_clicks_month - среднее кликов для баннера, сделанное за данное время года, за последние 15 показов
+    av_clicks_os - среднее кликов для баннера, сделанное с данной операционной системы, за последние 15 показов
+    av_clicks_country - среднее кликов для баннера, сделанное из данной страны, за последние 15 показов
+    av_clicks_month - среднее кликов для баннера, сделанное за данное время года, за последние 15 показов
     """
     # превратим date_time из строки в datetime тип данных:
     data['date_time'] = pd.to_datetime(data['date_time'])
@@ -80,7 +80,7 @@ def feature_engineering(data: pd.DataFrame) -> pd.DataFrame:
     data.loc[(evening, 'time_of_day')] = 2
     data.loc[(night, 'time_of_day')] = 3
     # Возьмем косинус от нормализованного времени суток, чтобы  модель знала, что после ночи идет утро
-    data["time_of_day"] = 2 * math.pi * data["time_of_day"] / data["time_of_day"].max()
+    data["time_of_day"] = math.pi * data["time_of_day"] / data["time_of_day"].max()
     data["time_of_day"] = np.cos(data["time_of_day"])
     ######################
     workday = (data['date_time'].dt.dayofweek >= 0) & (data['date_time'].dt.dayofweek < 5)
@@ -91,15 +91,15 @@ def feature_engineering(data: pd.DataFrame) -> pd.DataFrame:
     ######################
     data['month'] = data['date_time'].dt.month
     ######################
-    data['15_av_clicks_os'] = avg(data, 'os_id', 'clicks')
+    data['av_clicks_os'] = avg(data, 'os_id', 'clicks')
     # пропуски (когда мало предыдущих данных) заполним -1
-    data['15_av_clicks_os'] = data['15_av_clicks_os'].fillna(-1)
+    data['av_clicks_os'] = data['av_clicks_os'].fillna(-1)
     ######################
-    data['15_av_clicks_country'] = avg(data, 'country_id', 'clicks')
-    data['15_av_clicks_country'] = data['15_av_clicks_country'].fillna(-1)
+    data['av_clicks_country'] = avg(data, 'country_id', 'clicks')
+    data['av_clicks_country'] = data['av_clicks_country'].fillna(-1)
     ######################
-    data['15_av_clicks_month'] = avg(data, 'month', 'clicks')
-    data['15_av_clicks_month'] = data['15_av_clicks_month'].fillna(-1)
+    data['av_clicks_month'] = avg(data, 'month', 'clicks')
+    data['av_clicks_month'] = data['av_clicks_month'].fillna(-1)
     return data
 
 
@@ -118,7 +118,7 @@ def create_model( l2_ratio=0.6):
     """ solver saga,  sag в нашем случае не подойдет из-за разного масштаба фичей, который портит сходимость
      Попробуем использовать liblinear
      В качестве регуляризаци используем ridge"""
-    model = LogisticRegression(penalty='l2', solver='liblinear', l1_ratio=l2_ratio)
+    model = LogisticRegression(penalty='l2', solver='liblinear', C=l2_ratio)
     return model
 
 
