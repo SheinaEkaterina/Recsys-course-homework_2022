@@ -9,7 +9,7 @@ import math
 
 features = ['zone_id', 'campaign_clicks', 'os_id', 'country_id', 'banner_id',
             'time_of_day', 'is_weekend', 'av_clicks_country', 'av_clicks_os',
-            'av_clicks_month', 'month']
+            'av_clicks_month', 'month', 'average_clicks']
 
 
 def analysis(data: pd.DataFrame):
@@ -27,7 +27,7 @@ def analysis(data: pd.DataFrame):
 
 
 def baseline(data: pd.DataFrame):
-    # создадим бейзлайн как среднее по баннеру для страны country_id и операционной системы os_id
+    """создадим бейзлайн как среднее по баннеру для страны country_id и операционной системы os_id"""
 
     average_clicks = (data.loc[:, ['banner_id', 'os_id', 'country_id', 'clicks']]
                       .groupby(['banner_id', 'os_id', 'country_id'], sort=False)
@@ -35,7 +35,7 @@ def baseline(data: pd.DataFrame):
                       .mean())
 
     data = data.merge(average_clicks, how='inner', on=['banner_id', 'os_id', 'country_id'])
-    data = data.rename(columns={"clicks_x": "clicks", "clicks_y": "baseline"}, errors="raise")
+    data = data.rename(columns={"clicks_x": "clicks", "clicks_y": "average_clicks"}, errors="raise")
     return data
 
 
@@ -133,7 +133,7 @@ def test_model(model, X_test: pd.DataFrame, Y_test: pd.DataFrame):
 
 def test_baseline(data):
     true_labels = data.loc[:, 'clicks']
-    baseline_pred = data.loc[:, 'baseline']
+    baseline_pred = data.loc[:, 'average_clicks']
     auc = roc_auc_score(true_labels, baseline_pred)
     print(f"Log loss: {log_loss(true_labels, baseline_pred)}")
     print(f"Auc: {auc}")
