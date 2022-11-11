@@ -2,12 +2,12 @@ import pandas as pd
 import datetime as dtime
 import numpy as np
 import sklearn.metrics as metrics
-from sklearn.model_selection import GroupShuffleSplit, cross_val_score
-from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import cross_val_score
+from sklearn.linear_model import LogisticRegression, ElasticNet
 from sklearn.metrics import log_loss
 
-features = ['zone_id', 'campaign_clicks', 'os_id', 'country_id', 'time_of_day',
-            'is_weekend', '15_av_clicks_country', '15_av_clicks_os',
+features = ['zone_id', 'campaign_clicks', 'os_id', 'country_id', 'banner_id',
+            'time_of_day', 'is_weekend', '15_av_clicks_country', '15_av_clicks_os',
             '15_av_clicks_month', 'month']
 
 
@@ -21,7 +21,7 @@ def analysis(data: pd.DataFrame):
     print("Nan в таблице:")
     print((data.isnull().any()).any())
     print()
-    for feature in ['os_id', 'country_id', 'impressions', 'campaign_clicks']:
+    for feature in ['os_id', 'country_id', 'impressions', 'campaign_clicks', 'banner_id']:
         print(f"Количество уникальных значений для {feature}:  {len(data[feature].value_counts())}")
 
 
@@ -101,12 +101,9 @@ def feature_engineering(data: pd.DataFrame) -> pd.DataFrame:
 
 
 def train_test_split(data: pd.DataFrame):
-    # Разобъем на тест и тест так, чтобы один баннер не попал и в тест и трэйн
-    splitter = GroupShuffleSplit(test_size=0.33, n_splits=2, random_state=7)
-    split = splitter.split(data, groups=data['banner_id'])
-    train_inds, test_inds = next(split)
-    train = data.iloc[train_inds]
-    test = data.iloc[test_inds]
+    last_day = data['date'].max()
+    test = data.loc[data['date'] == last_day]
+    train = data.loc[data['date'] < last_day]
     X_train = train.loc[:, features]
     Y_train = train.loc[:, 'clicks']
     X_test = test.loc[:, features]
@@ -114,27 +111,45 @@ def train_test_split(data: pd.DataFrame):
     return X_train, Y_train, X_test, Y_test
 
 
-def create_model(X_train: pd.DataFrame, Y_train: pd.DataFrame, l1_ratio=0.6):
-    model = LogisticRegression(penalty='elasticnet', solver='saga', l1_ratio=l1_ratio)
+def create_model(X_train: pd.DataFrame, Y_train: pd.DataFrame, l1_ratio=0.6, alpha=0.5):
+    # model = LogisticRegression(penalty='elasticnet', solver='saga', l1_ratio=l1_ratio)
+    # model = ElasticNet(alpha=alpha, l1_ratio=l1_ratio)
+    model = LogisticRegression()
     model.fit(X_train, Y_train)
     return model
 
 
 def test_model(model, X_test: pd.DataFrame, Y_test: pd.DataFrame):
-    prediction = model.predict(X_test)
+    prediction = model.predict_proba(X_test)
+    # возьмем только вероятность клика
+    prediction = prediction[:, 1]
+
     fpr, tpr, thresholds = metrics.roc_curve(Y_test, prediction, pos_label=2)
     auc = metrics.auc(fpr, tpr)
     print(f"Log loss: {log_loss(Y_test, prediction)}")
     print(f"Auc: {auc}")
 
 
-def cv(X_train: pd.DataFrame, Y_train: pd.DataFrame):
+def test_baseline(data):
+    true_labels = data.loc[:, 'clicks']
+    baseline_pred = data.loc[:, 'baseline']
+    fpr, tpr, thresholds = metrics.roc_curve(true_labels, baseline_pred, pos_label=2)
+    auc = metrics.auc(fpr, tpr)
+    print(f"Log loss: {log_loss(true_labels, baseline_pred)}")
+    print(f"Auc: {auc}")
+
+
+def cv(X_train: pd.DataFrame, Y_train: pd.DataFrame, metric: str):
     scores = dict()
-    for l1_ratio in np.linspace(0, 0.5, 6):
-        regr = LogisticRegression(penalty='elasticnet', solver='saga', l1_ratio=l1_ratio)
-        regr.fit(X_train, Y_train)
-        score = cross_val_score(regr, X_train, Y_train, n_jobs=-1, cv=4, scoring='log_loss')
-        scores[l1_ratio] = np.mean(score)
+    for l1_ratio in np.linspace(0, 1, 5):
+        for alpha in np.linspace(0.2, 1, 4):
+            # regr = LogisticRegression(penalty='elasticnet', solver='saga', l1_ratio=l1_ratio)
+            regr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio)
+            regr.fit(X_train, Y_train)
+            score = cross_val_score(regr, X_train, Y_train, n_jobs=-1, cv=3, scoring=metric)
+            scores[(l1_ratio, alpha)] = np.mean(score)
+            print(f"Alpha: {alpha}, L1: {l1_ratio}, score: {score}")
+
     opt_params = max(scores, key=scores.get)
-    l1_ratio = opt_params[1]
-    return l1_ratio
+    l1_ratio, alpha = opt_params
+    return l1_ratio, alpha
