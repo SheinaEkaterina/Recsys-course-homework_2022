@@ -133,7 +133,8 @@ def test_model(model, X_test: pd.DataFrame, Y_test: pd.DataFrame):
 
 def test_baseline(data):
     true_labels = data.loc[:, 'clicks']
-    baseline_pred = data.loc[:, 'average_clicks']
+    baseline_pred\
+        = data.loc[:, 'average_clicks']
     auc = roc_auc_score(true_labels, baseline_pred)
     print(f"Log loss: {log_loss(true_labels, baseline_pred)}")
     print(f"Auc: {auc}")
