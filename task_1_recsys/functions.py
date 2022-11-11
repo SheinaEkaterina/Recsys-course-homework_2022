@@ -4,7 +4,8 @@ import numpy as np
 import sklearn.metrics as metrics
 from sklearn.model_selection import cross_val_score
 from sklearn.linear_model import LogisticRegression, ElasticNet
-from sklearn.metrics import log_loss
+from sklearn.metrics import log_loss, roc_auc_score
+import math
 
 features = ['zone_id', 'campaign_clicks', 'os_id', 'country_id', 'banner_id',
             'time_of_day', 'is_weekend', '15_av_clicks_country', '15_av_clicks_os',
@@ -58,7 +59,7 @@ def avg(data: pd.DataFrame, slice_col: str, feature: str = 'clicks', number_rows
 
 def feature_engineering(data: pd.DataFrame) -> pd.DataFrame:
     """
-    time_of_day - время суток показа баннера (0 - утро, 1 - день, 2 - вечер, 3 - ночь)
+    time_of_day - время суток показа баннера (для сохранения цикличности берем косинус от этой фичи)
     is_weekend - выходной или нет 1/0
     month - месяц показа рекламы (месяца всего 2 в данных - октябрь и сентябрь)
     15_av_clicks_os - среднее кликов для баннера, сделанное с данной операционной системы, за последние 15 показов
@@ -78,7 +79,9 @@ def feature_engineering(data: pd.DataFrame) -> pd.DataFrame:
     data.loc[(day, 'time_of_day')] = 1
     data.loc[(evening, 'time_of_day')] = 2
     data.loc[(night, 'time_of_day')] = 3
-    data['time_of_day'] = data['time_of_day'].astype('int8')
+    # Возьмем косинус от нормализованного времени суток, чтобы  модель знала, что после ночи идет утро
+    data["time_of_day"] = 2 * math.pi * data["time_of_day"] / data["time_of_day"].max()
+    data["time_of_day"] = np.cos(data["time_of_day"])
     ######################
     workday = (data['date_time'].dt.dayofweek >= 0) & (data['date_time'].dt.dayofweek < 5)
     weekend = (data['date_time'].dt.dayofweek >= 5) & (data['date_time'].dt.dayofweek < 7)
@@ -123,9 +126,7 @@ def test_model(model, X_test: pd.DataFrame, Y_test: pd.DataFrame):
     prediction = model.predict_proba(X_test)
     # возьмем только вероятность клика
     prediction = prediction[:, 1]
-
-    fpr, tpr, thresholds = metrics.roc_curve(Y_test, prediction, pos_label=2)
-    auc = metrics.auc(fpr, tpr)
+    auc = roc_auc_score(Y_test, prediction)
     print(f"Log loss: {log_loss(Y_test, prediction)}")
     print(f"Auc: {auc}")
 
