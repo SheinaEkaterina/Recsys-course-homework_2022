@@ -142,7 +142,7 @@ def test_baseline(data):
 
 def cv(X_train: pd.DataFrame, Y_train: pd.DataFrame, metric: str):
     scores = dict()
-    for l2_ratio in [0.0001, 0.001, 0.01, 0.1, 1, 10]:
+    for l2_ratio in [ 0.01, 0.1, 1, 10, 100]:
         regr = create_model(l2_ratio)
         regr.fit(X_train, Y_train)
         score = cross_val_score(regr, X_train, Y_train, n_jobs=-1, cv=3, scoring=metric)
