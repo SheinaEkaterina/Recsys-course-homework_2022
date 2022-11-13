@@ -1,15 +1,11 @@
 import pandas as pd
 import datetime as dtime
 import numpy as np
-import sklearn.metrics as metrics
 from sklearn.model_selection import cross_val_score
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import log_loss, roc_auc_score
 import math
 
-features = ['zone_id', 'campaign_clicks', 'os_id', 'country_id', 'banner_id',
-            'time_of_day', 'is_weekend', 'av_clicks_country', 'av_clicks_os',
-            'av_clicks_month', 'month', 'average_clicks']
 
 
 def analysis(data: pd.DataFrame):
@@ -82,6 +78,8 @@ def feature_engineering(data: pd.DataFrame) -> pd.DataFrame:
     # Возьмем косинус от нормализованного времени суток, чтобы  модель знала, что после ночи идет утро
     data["time_of_day"] = math.pi * data["time_of_day"] / data["time_of_day"].max()
     data["time_of_day"] = np.cos(data["time_of_day"])
+    # Отнормируем
+    data["time_of_day"] = (data["time_of_day"]+1)/2
     ######################
     workday = (data['date_time'].dt.dayofweek >= 0) & (data['date_time'].dt.dayofweek < 5)
     weekend = (data['date_time'].dt.dayofweek >= 5) & (data['date_time'].dt.dayofweek < 7)
@@ -90,20 +88,32 @@ def feature_engineering(data: pd.DataFrame) -> pd.DataFrame:
     data['is_weekend'] = data['is_weekend'].astype('int8')
     ######################
     data['month'] = data['date_time'].dt.month
+    # Отнормируем
+    data['month'] = data['month']- 9
     ######################
     data['av_clicks_os'] = avg(data, 'os_id', 'clicks')
     # пропуски (когда мало предыдущих данных) заполним -1
     data['av_clicks_os'] = data['av_clicks_os'].fillna(-1)
+    # Отнормируем
+    data['av_clicks_os'] = (data['av_clicks_os'] + 1) / 2
     ######################
     data['av_clicks_country'] = avg(data, 'country_id', 'clicks')
     data['av_clicks_country'] = data['av_clicks_country'].fillna(-1)
+    data['av_clicks_country'] = (data['av_clicks_country'] + 1) / 2
     ######################
     data['av_clicks_month'] = avg(data, 'month', 'clicks')
     data['av_clicks_month'] = data['av_clicks_month'].fillna(-1)
+    data['av_clicks_month'] = (data['av_clicks_month'] + 1) / 2
+    # Создадим копию колонки с датой, чтобы не потерять ее при one-hot encoding
+    # (она понадобится при разбиениии на тест и трейн).
+    # После разбиения на тест и трейн уже уберем и ее
+    data['date_copy'] = data['date']
+    # Отнормируем campaign_clicks
+    data['campaign_clicks'] = data['campaign_clicks']/max(data['campaign_clicks'])
     return data
 
 
-def train_test_split(data: pd.DataFrame):
+def train_test_split(data: pd.DataFrame, features: list):
     last_day = data['date'].max()
     test = data.loc[data['date'] == last_day]
     train = data.loc[data['date'] < last_day]
@@ -115,8 +125,7 @@ def train_test_split(data: pd.DataFrame):
 
 
 def create_model( l2_ratio=0.6):
-    """ solver saga,  sag в нашем случае не подойдет из-за разного масштаба фичей, который портит сходимость
-     Попробуем использовать liblinear
+    """
      В качестве регуляризаци используем ridge"""
     model = LogisticRegression(penalty='l2', solver='liblinear', C=l2_ratio)
     return model
