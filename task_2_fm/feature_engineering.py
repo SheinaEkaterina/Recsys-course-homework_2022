@@ -1,3 +1,4 @@
+import pickle
 from typing import Union, Tuple
 from pathlib import Path
 import numpy as np
@@ -25,18 +26,23 @@ def main():
 
     # numerical data
     for df, path in zip(dataframes, paths):
-        process_datetime(df["date_time"], path / "date_time.npy")
+        process_datetime(df["date_time"], path / "date_time.pkl")
         process_campaign_clicks(df["campaign_clicks"],
-                                path / "log_campaign_clicks.npy")
-        process_clicks(df["clicks"], path / "clicks.npy")
+                                path / "log_campaign_clicks.pkl")
+        process_clicks(df["clicks"], path / "clicks.pkl")
 
     # one-hot encoded features
     for name, kwargs in ONE_HOT_KWARGS.items():
         xtrain, xtest = one_hot_wrapper(df_train[name], df_test[name], **kwargs)
-        fname = name + ".npy"
+        fname = name + ".pkl"
         print(name, xtrain.shape, xtest.shape)
-        np.save(TRAIN_DIR / fname, xtrain)
-        np.save(TEST_DIR / fname, xtest)
+        save_array(TRAIN_DIR / fname, xtrain)
+        save_array(TEST_DIR / fname, xtest)
+
+
+def save_array(save_to: Union[Path, str], arr: Union[np.ndarray, sparse.spmatrix]):
+    with open(save_to, "wb") as fout:
+        pickle.dump(arr, fout)
 
 
 def process_datetime(dt_col: pd.Series, save_to: Union[Path, str]):
@@ -44,18 +50,18 @@ def process_datetime(dt_col: pd.Series, save_to: Union[Path, str]):
     out = pd.DataFrame(index=dt_col.index, columns=("weekday", "hour"))
     out["weekday"] = dt.dt.weekday
     out["hour"] = dt.dt.hour
-    np.save(save_to, out.to_numpy())
+    save_array(save_to, out.to_numpy())
 
 
 def process_campaign_clicks(cc_col: pd.Series, save_to: Union[Path, str]):
     log_cc = np.log(cc_col.to_numpy() + 1).reshape(-1, 1)
-    np.save(save_to, log_cc)
+    save_array(save_to, log_cc)
 
 
 def process_clicks(clicks: pd.Series, save_to: Union[Path, str]):
     clicks = clicks.to_numpy().reshape(-1, 1)
-    clicks = sparse.coo_matrix(clicks)
-    np.save(save_to, clicks)
+    clicks = sparse.csr_matrix(clicks)
+    save_array(save_to, clicks)
 
 
 def one_hot_wrapper(train_data: pd.Series, test_data: pd.Series, **kwargs
