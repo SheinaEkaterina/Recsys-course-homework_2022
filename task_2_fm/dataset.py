@@ -30,7 +30,7 @@ class ClickDataset(Dataset):
         self.y = load_array(data_dir / f"{target}.pkl").astype(np.float32)
 
     def __getitem__(self, index) -> Tuple[sparse.spmatrix, float]:
-       return self.X[index].tocoo(), self.y[index].tocoo()
+       return self.X[index].tocoo(), float(self.y[index].todense())
 
     def __len__(self) -> int:
         return self.y.shape[0]
@@ -44,7 +44,8 @@ def load_array(file: Union[Path, str]):
 def collate_fn(data: List[Tuple[sparse.spmatrix]]
                ) -> Tuple[torch.Tensor, torch.Tensor]:
     X, y = zip(*data)
-    X, y = map(scipy_to_torch, (X, y))
+    X = scipy_to_torch(X)
+    y = torch.tensor(np.array(y, dtype=np.float32))
     return X, y
 
 
