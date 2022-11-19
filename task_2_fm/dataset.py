@@ -28,6 +28,7 @@ class ClickDataset(Dataset):
         self.X = sparse.hstack(arrays, format="csr", dtype=np.float32)
         self.columns = tuple(columns)
         self.y = load_array(data_dir / f"{target}.pkl").astype(np.float32)
+        self.num_features = self.X.shape[1]
 
     def __getitem__(self, index) -> Tuple[sparse.spmatrix, float]:
        return self.X[index].tocoo(), float(self.y[index].todense())
@@ -49,14 +50,14 @@ def collate_fn(data: List[Tuple[sparse.spmatrix]]
     return X, y
 
 
-def scipy_to_torch(x: Tuple[sparse.coo_matrix]) -> torch.sparse_csr_tensor:
+def scipy_to_torch(x: Tuple[sparse.coo_matrix]) -> torch.sparse_coo_tensor:
     coo = sparse.vstack(x)
     coo = torch.sparse_coo_tensor(
         indices=np.vstack([coo.row, coo.col]),
         values=coo.data,
         size=coo.shape
     )
-    return coo.to_sparse_csr()
+    return coo
 
 
 if __name__ == "__main__":
