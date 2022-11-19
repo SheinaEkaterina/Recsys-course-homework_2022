@@ -1,6 +1,9 @@
 from typing import Sequence
+from tqdm import tqdm
+import numpy as np
 import torch
 from torch import nn, optim, Tensor
+from torch.utils.data import DataLoader
 
 
 class FactorizationMachineOneHot(nn.Module):
@@ -30,6 +33,15 @@ class FactorizationMachineTokenized(nn.Module):
         out_n = self.linear_n(Xn)
         return torch.sigmoid(out_n + out_c)
 
+    @torch.no_grad()
+    def predict(self, dl: DataLoader) -> np.ndarray:
+        predictions = []
+        for batch in tqdm(dl):
+            Xc, Xn = batch[:2]
+            output = self.forward(Xc, Xn).cpu().numpy()
+            predictions += list(output.ravel())
+        return np.array(predictions, dtype=np.float32)
+
 
 class CategoricalLinear(nn.Module):
     def __init__(self, categorical_sizes: Sequence[int]):
@@ -45,19 +57,22 @@ class CategoricalLinear(nn.Module):
 if __name__ == "__main__":
     from tqdm import tqdm
     from torch.utils.data import DataLoader
+    from sklearn.metrics import log_loss, roc_auc_score
     from dataset import ClickDatasetTokenized
 
-    ds = ClickDatasetTokenized("data/processed/train.csv")
-    dl = DataLoader(ds, batch_size=4096, shuffle=True)
+    ds_train = ClickDatasetTokenized("data/processed/train.csv")
+    dl_train = DataLoader(ds_train, batch_size=4096, shuffle=True)
+    ds_test = ClickDatasetTokenized("data/processed/test.csv")
+    dl_test = DataLoader(ds_test, batch_size=4096, shuffle=False)
 
-    model = FactorizationMachineTokenized(ds.cat_sizes, len(ds.numerical), 10)
+    model = FactorizationMachineTokenized(ds_train.cat_sizes, len(ds_train.numerical), 10)
     loss_fn = nn.BCELoss()
     optimizer = optim.Adam(model.parameters(), weight_decay=1e-4)
 
-    for _ in range(3):
+    for _ in range(10):
         num_iter = 0
         avg_loss = 0
-        for Xc, Xn, y in tqdm(dl):
+        for Xc, Xn, y in tqdm(dl_train):
             pred = model(Xc, Xn)
             loss = loss_fn(pred, y.unsqueeze(1))
             optimizer.zero_grad()
@@ -67,4 +82,9 @@ if __name__ == "__main__":
             num_iter += 1
             avg_loss *= (num_iter - 1) / num_iter
             avg_loss += loss.item() / num_iter
-        print(avg_loss)
+        print(f"Train loss: {avg_loss:.4f}")
+
+        pred = model.predict(dl_test)
+        test_loss = log_loss(ds_test.y, pred)
+        test_auc = roc_auc_score(ds_test.y, pred)
+        print(f"Test loss: {test_loss:.4f}, test ROC-AUC: {test_auc: .3f}")
