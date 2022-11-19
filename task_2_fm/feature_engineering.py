@@ -72,16 +72,16 @@ def feature_engineering_dense(input_dir: Union[Path, str],
     for name, kwargs in ONE_HOT_KWARGS.items():
         tok = get_tokenizer(df_train[name], **kwargs)
         for df in dataframes:
-            transformed = np.zeros(len(df), dtype=np.bool8)
+            unchanged = np.ones(len(df), dtype=np.bool8)
             for value, token in tqdm(tok.items()):
-                mask = df[name] == value
+                mask = (df[name] == value) & unchanged
                 df.loc[mask, name] = token
-                transformed[mask] = True
-            df.loc[~transformed, name] = tok.default_factory()
+                unchanged[mask] = False
+            df.loc[unchanged, name] = tok.default_factory()
 
     # export results
-    df_train.to_csv(output_dir / "train.csv")
-    df_test.to_csv(output_dir / "test.csv")
+    df_train.to_csv(output_dir / "train.csv", index=False)
+    df_test.to_csv(output_dir / "test.csv", index=False)
 
 
 def save_array(save_to: Union[Path, str], arr: Union[np.ndarray, sparse.spmatrix]):
