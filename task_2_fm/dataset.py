@@ -3,13 +3,14 @@ from pathlib import Path
 import pickle
 import numpy as np
 from scipy import sparse
+import pandas as pd
 import torch
 from torch.utils.data import Dataset
 
 
-class ClickDataset(Dataset):
+class ClickDatasetOneHot(Dataset):
     def __init__(self, data_dir: Union[Path, str],
-                 features: tuple[str] = (
+                 features: Tuple[str] = (
                     "oaid_hash", "banner_id", "country_id", "date_time",
                     "os_id", "log_campaign_clicks", "zone_id"),
                  target: str = "clicks"):
@@ -60,11 +61,44 @@ def scipy_to_torch(x: Tuple[sparse.coo_matrix]) -> torch.sparse_coo_tensor:
     return coo
 
 
+class ClickDatasetTokenized(Dataset):
+    def __init__(
+        self,
+        file: Union[Path, str],
+        categorical: Tuple[str] = \
+            ("oaid_hash", "banner_id", "country_id", "os_id", "zone_id"),
+        numerical: Tuple[str] = \
+            ("weekday", "hour", "log_campaign_clicks"),
+        target: str = "clicks"
+    ):
+        # load dataframe
+        df = pd.read_csv(file)
+        # categorical features
+        self.Xc = np.zeros(shape=(len(df), len(categorical)), dtype=np.int32)
+        self.Xc[:, :] = df.loc[:, categorical]
+        self.cat_sizes = tuple([len(df[col].unique()) for col in categorical])
+        # numerical features
+        self.Xn = np.zeros(shape=(len(df), len(numerical)), dtype=np.float32)
+        self.Xn[:, :] = df.loc[:, numerical]
+        # target
+        self.y = df[target].to_numpy().astype(np.float32)
+
+        # save feature names
+        self.categorical = categorical
+        self.numerical = numerical
+
+    def __len__(self) -> int:
+        return self.y.shape[0]
+
+    def __getitem__(self, index) -> Tuple[np.ndarray]:
+        return self.Xc[index], self.Xn[index], self.y[index]
+
+
 if __name__ == "__main__":
     from tqdm import tqdm
     from torch.utils.data import DataLoader
 
-    train_dset = ClickDataset("data/processed/train")
-    train_dloader = DataLoader(train_dset, 1024, collate_fn=collate_fn, shuffle=True)
+    train_dset = ClickDatasetTokenized("data/processed/train.csv")
+    train_dloader = DataLoader(train_dset, 1024, shuffle=True)
     for batch in tqdm(train_dloader):
-        X, y = batch
+        Xc, Xn, y = batch
