@@ -14,11 +14,19 @@ class FactorizationMachineOneHot(nn.Module):
 
     def forward(self, X: Tensor) -> Tensor:
         linear = self.fc(X)
-        Xd = X.to_dense()  # :'(
-        sq_sum = (Xd.unsqueeze(2) * self.w).sum(1)**2
-        sum_sq = (Xd.unsqueeze(2)**2 * self.w**2).sum(1)
+        sq_sum = torch.mm(X, self.w)**2
+        sum_sq = torch.mm(X**2, self.w**2)
         logits = linear + 0.5 * torch.sum(sq_sum - sum_sq, 1, keepdim=True)
-        return torch.sigmoid(logits)
+        return logits
+
+    @torch.no_grad()
+    def predict(self, dl: DataLoader) -> np.ndarray:
+        predictions = []
+        for batch in tqdm(dl):
+            X = batch[0]
+            output = torch.sigmoid(self.forward(X)).cpu().numpy()
+            predictions += list(output.ravel())
+        return np.array(predictions, dtype=np.float32)
 
 
 class FactorizationMachineTokenized(nn.Module):
@@ -76,28 +84,24 @@ if __name__ == "__main__":
     from tqdm import tqdm
     from torch.utils.data import DataLoader
     from sklearn.metrics import log_loss, roc_auc_score
-    from sklearn.preprocessing import StandardScaler
-    from dataset import ClickDatasetTokenized
+    from dataset import ClickDatasetOneHot, collate_fn
 
-    ds_train = ClickDatasetTokenized("data/processed/train.csv")
-    scaler = StandardScaler()
-    scaler.fit(ds_train.Xn)
-    ds_train.Xn[:, :] = scaler.transform(ds_train.Xn)
-    dl_train = DataLoader(ds_train, batch_size=2048, shuffle=True)
-    ds_test = ClickDatasetTokenized("data/processed/test.csv")
-    ds_test.Xn[:, :] = scaler.transform(ds_test.Xn)
-    dl_test = DataLoader(ds_test, batch_size=4096, shuffle=False)
+    ds_train = ClickDatasetOneHot("data/processed/train")
+    dl_train = DataLoader(ds_train, batch_size=4096, shuffle=True,
+                          collate_fn=collate_fn)
+    ds_test = ClickDatasetOneHot("data/processed/test")
+    dl_test = DataLoader(ds_test, batch_size=4096, shuffle=False,
+                         collate_fn=collate_fn)
 
-    model = FactorizationMachineTokenized(ds_train.cat_sizes, len(ds_train.numerical), 10)
+    model = FactorizationMachineOneHot(ds_train.num_features, 10)
     loss_fn = nn.BCEWithLogitsLoss()
-    optimizer = optim.Adagrad(model.parameters(), lr=1e-1, weight_decay=1e-4)
-    scheduler = optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.5)
+    optimizer = optim.Adam(model.parameters())
 
     for _ in range(10):
         num_iter = 0
         avg_loss = 0
-        for Xc, Xn, y in tqdm(dl_train):
-            logits = model(Xc, Xn)
+        for X, y in tqdm(dl_train):
+            logits = model(X)
             loss = loss_fn(logits, y.unsqueeze(1))
             optimizer.zero_grad()
             loss.backward()
@@ -106,10 +110,10 @@ if __name__ == "__main__":
             num_iter += 1
             avg_loss *= (num_iter - 1) / num_iter
             avg_loss += loss.item() / num_iter
+            break
         print(f"Train loss: {avg_loss:.4f}")
 
         pred = model.predict(dl_test)
         test_loss = log_loss(ds_test.y, pred, eps=1e-7)
         test_auc = roc_auc_score(ds_test.y, pred)
         print(f"Test loss: {test_loss:.4f}, test ROC-AUC: {test_auc: .3f}")
-        scheduler.step()
