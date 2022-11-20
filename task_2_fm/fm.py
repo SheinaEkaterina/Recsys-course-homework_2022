@@ -64,7 +64,8 @@ class FactorizationMachineTokenized(nn.Module):
 class Embeddings(nn.Module):
     def __init__(self, emb_numbers: Sequence[int], emb_dim: int):
         super().__init__()
-        self.embeddings = [nn.Embedding(num, emb_dim) for num in emb_numbers]
+        self.embeddings = nn.ModuleList(
+            [nn.Embedding(num, emb_dim) for num in emb_numbers])
 
     def forward(self, x: Tensor) -> Tensor:
         output = [emb(x[:, i]) for i, emb in enumerate(self.embeddings)]
@@ -82,26 +83,24 @@ class CategoricalLinear(Embeddings):
 
 if __name__ == "__main__":
     from tqdm import tqdm
-    from torch.utils.data import DataLoader
     from sklearn.metrics import log_loss, roc_auc_score
-    from dataset import ClickDatasetOneHot, collate_fn
+    from dataset import ClickDatasetTokenized
 
-    ds_train = ClickDatasetOneHot("data/processed/train")
-    dl_train = DataLoader(ds_train, batch_size=4096, shuffle=True,
-                          collate_fn=collate_fn)
-    ds_test = ClickDatasetOneHot("data/processed/test")
-    dl_test = DataLoader(ds_test, batch_size=4096, shuffle=False,
-                         collate_fn=collate_fn)
+    ds_train = ClickDatasetTokenized("data/processed/train.csv")
+    dl_train = DataLoader(ds_train, batch_size=2048, shuffle=True)
+    ds_test = ClickDatasetTokenized("data/processed/test.csv")
+    dl_test = DataLoader(ds_test, batch_size=4096, shuffle=False)
 
-    model = FactorizationMachineOneHot(ds_train.num_features, 10)
+    model = FactorizationMachineTokenized(
+        ds_train.cat_sizes, len(ds_train.numerical), 10)
     loss_fn = nn.BCEWithLogitsLoss()
     optimizer = optim.Adam(model.parameters())
 
     for _ in range(10):
         num_iter = 0
         avg_loss = 0
-        for X, y in tqdm(dl_train):
-            logits = model(X)
+        for Xc, Xn, y in tqdm(dl_train):
+            logits = model(Xc, Xn)
             loss = loss_fn(logits, y.unsqueeze(1))
             optimizer.zero_grad()
             loss.backward()
@@ -110,7 +109,6 @@ if __name__ == "__main__":
             num_iter += 1
             avg_loss *= (num_iter - 1) / num_iter
             avg_loss += loss.item() / num_iter
-            break
         print(f"Train loss: {avg_loss:.4f}")
 
         pred = model.predict(dl_test)
