@@ -64,12 +64,13 @@ class FactorizationMachineTokenized(nn.Module):
 class Embeddings(nn.Module):
     def __init__(self, emb_numbers: Sequence[int], emb_dim: int):
         super().__init__()
-        self.embeddings = nn.ModuleList(
-            [nn.Embedding(num, emb_dim) for num in emb_numbers])
+        self.offsets = torch.tensor(np.cumsum(emb_numbers) - emb_numbers[0],
+                                    dtype=torch.int32)
+        self.emb = nn.Embedding(np.sum(emb_numbers), emb_dim)
 
     def forward(self, x: Tensor) -> Tensor:
-        output = [emb(x[:, i]) for i, emb in enumerate(self.embeddings)]
-        return torch.stack(output, 1)
+        x = x + self.offsets
+        return self.emb(x)
 
 
 class CategoricalLinear(Embeddings):
