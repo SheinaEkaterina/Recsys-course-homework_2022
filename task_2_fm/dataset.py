@@ -1,4 +1,4 @@
-from typing import Union, Tuple, List
+from typing import Union, Tuple, List, Iterable
 from pathlib import Path
 import pickle
 import numpy as np
@@ -9,6 +9,9 @@ from torch.utils.data import Dataset
 
 
 class ClickDatasetOneHot(Dataset):
+    """
+    Dataset that uses one-hot encoded data stored as sparse (CSR) arrays.
+    """
     def __init__(self, data_dir: Union[Path, str],
                  features: Tuple[str] = (
                     "oaid_hash", "banner_id", "country_id", "date_time",
@@ -51,7 +54,7 @@ def collate_fn(data: List[Tuple[sparse.spmatrix]]
     return X, y
 
 
-def scipy_to_torch(x: Tuple[sparse.coo_matrix]) -> torch.sparse_coo_tensor:
+def scipy_to_torch(x: Iterable[sparse.coo_matrix]) -> torch.sparse_coo_tensor:
     coo = sparse.vstack(x)
     coo = torch.sparse_coo_tensor(
         indices=np.vstack([coo.row, coo.col]),
@@ -62,6 +65,9 @@ def scipy_to_torch(x: Tuple[sparse.coo_matrix]) -> torch.sparse_coo_tensor:
 
 
 class ClickDatasetTokenized(Dataset):
+    """
+    Dataset that uses categorical data encoded as tokens {0, 1, .., n}.
+    """
     def __init__(
         self,
         file: Union[Path, str],
