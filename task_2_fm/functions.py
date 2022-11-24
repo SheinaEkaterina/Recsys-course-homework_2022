@@ -49,13 +49,24 @@ def feature_engineering(data: pd.DataFrame) -> pd.DataFrame:
     data['month'] = data['date_time'].dt.month
     data['month'] = data['month'] - 9
     # ######################
+    # Объединим пользователей, которые встречаются 1 раз, в 1 пользователя с oaid_hash=0
+    value_count = pd.DataFrame(data['oaid_hash'].value_counts().reset_index())
+    rare_values = value_count[value_count['oaid_hash'] < 2]['index'].to_list()
+    data['oaid_hash'] = np.where(data['oaid_hash'].isin(rare_values), 0, data['oaid_hash'])
+    # ######################
     # Закодируем хэши пользователей
-    data['oaid_hash'] = data['oaid_hash'].map(encode_hash)
-    # Прологарифмируем campaign_clicks
-    data['campaign_clicks'] = data['campaign_clicks'] + 0.1
-    data['campaign_clicks'] = np.log(data['campaign_clicks'])
-    data['campaign_clicks'] = data['campaign_clicks'].astype(int)
+    # Сделаем словарь, где каждому хэшу поставим в соответсвие число от 0 до n_users
+    users_hash = list(data['oaid_hash'].unique())
+    n_users = len(users_hash)
+    new_hashes = np.arange(n_users)
+    mapping = dict(zip(users_hash, new_hashes))
+    data['oaid_hash'] = data['oaid_hash'].map(mapping)
+    # # Прологарифмируем campaign_clicks
+    # data['campaign_clicks'] = data['campaign_clicks'] + 0.1
+    # data['campaign_clicks'] = np.log(data['campaign_clicks'])
+    # data['campaign_clicks'] = data['campaign_clicks'].astype(int)
     return data
+
 
 def one_hot(data: pd.DataFrame):
     cats_zone = data['zone_id'].value_counts()[lambda x: x > 300000].index
@@ -71,10 +82,6 @@ def one_hot(data: pd.DataFrame):
     data = data.drop(columns=['date_time', 'time'])
     return data
 
-
-def encode_hash(value, min_val=1116910879938):
-    """Функция для кодирования хэшей пользователей oaid_hash (иначе может быть overflow)"""
-    return value//min_val + value%min_val
 
 def item_feature_matrix(data: pd.DataFrame):
     """
@@ -124,14 +131,15 @@ def item_user_matrix(data: pd.DataFrame):
     user_item_matrix = sps.csr_matrix(user_item_table, dtype=np.int32)
     return user_item_matrix
 
-def train_test_split(data):
+
+def train_test_split(data: pd.DataFrame):
     last_day = data['date'].max()
     test = data.loc[data['date'] == last_day]
     train = data.loc[data['date'] < last_day]
     return train, test
 
 
-def prepare_data(train, test):
+def prepare_data(train: pd.DataFrame, test: pd.DataFrame):
     """Сделаем разбивку на тестовое и тренировочное множества.
     Создадим матрицы с фичами пользователя, с фичами баннера и матрицу пользователь-баннер"""
     user_feat_train = user_feature_matrix(train)
@@ -145,12 +153,12 @@ def prepare_data(train, test):
 
 def test_model(model, user_item_test, user_feat_test, item_feat_test):
     auc = auc_score(model, test_interactions=user_item_test,
-                           user_features=user_feat_test,
-                           item_features=item_feat_test).mean()
+                    user_features=user_feat_test,
+                    item_features=item_feat_test).mean()
     print(f"Auc: {auc}")
 
 
-def cv(user_item_train, user_feat_train, item_feat_train):
+def cv(user_item_train: sps.csr_matrix, user_feat_train: sps.csr_matrix, item_feat_train: sps.csr_matrix):
     scores = dict()
     train, test = lightfm.cross_validation.random_train_test_split(user_item_train, test_percentage=0.3,
                                                                    random_state=22)
@@ -173,6 +181,6 @@ def extraxt_users_items(test: pd.DataFrame):
     """Возвращает array из баннеров в тесте и array из юзеров в тесте"""
     users_array = test['oaid_hash']
     items_array = test['banner_id']
-    users_array= np.array(users_array, dtype=np.int64)
+    users_array = np.array(users_array, dtype=np.int64)
     items_array = np.array(items_array, dtype=np.int32)
     return users_array, items_array
