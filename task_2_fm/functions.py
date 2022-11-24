@@ -139,7 +139,7 @@ def test_model(prediction, Y_test: pd.DataFrame):
     print(f"Auc: {auc}")
 
 
-def cv(X_train: pd.DataFrame, Y_train: pd.DataFrame, metric: str):
+def cv( metric: str):
     scores = dict()
     for n in [5, 10, 20]:
         model = LightFM(no_components=n)
