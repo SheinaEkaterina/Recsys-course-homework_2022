@@ -17,6 +17,8 @@ def analyse_new_columns(data: pd.DataFrame):
         print(f"Nan в {feature}:  {data['oaid_hash'].isnull().any()}")
         print(f"Встречаемость самого частого значения: {data['oaid_hash'].value_counts().max()}")
         print(f"Встречаемость самого редкого значения: {data['oaid_hash'].value_counts().min()}")
+        print(f"Минимальное значение: {data['oaid_hash'].min()}")
+        print(f"Максимальное значение:  {data['oaid_hash'].min()}")
 
 
 def feature_engineering(data: pd.DataFrame) -> pd.DataFrame:
@@ -46,6 +48,13 @@ def feature_engineering(data: pd.DataFrame) -> pd.DataFrame:
     # ######################
     data['month'] = data['date_time'].dt.month
     data['month'] = data['month'] - 9
+    # ######################
+    # Закодируем хэши пользователей
+    data['oaid_hash'] = data['oaid_hash'].map(encode_hash)
+    # Прологарифмируем campaign_clicks
+    data['campaign_clicks'] = data['campaign_clicks'] + 0.1
+    data['campaign_clicks'] = np.log(data['campaign_clicks'])
+    data['campaign_clicks'] = data['campaign_clicks'].astype(int)
     return data
 
 def one_hot(data: pd.DataFrame):
@@ -62,6 +71,10 @@ def one_hot(data: pd.DataFrame):
     data = data.drop(columns=['date_time', 'time'])
     return data
 
+
+def encode_hash(value, min_val=1116910879938):
+    """Функция для кодирования хэшей пользователей oaid_hash (иначе может быть overflow)"""
+    return value//min_val + value%min_val
 
 def item_feature_matrix(data: pd.DataFrame):
     """
@@ -154,3 +167,12 @@ def cv(user_item_train, user_feat_train, item_feat_train):
     opt_params = max(scores, key=scores.get)
     l1_ratio = opt_params
     return l1_ratio
+
+
+def extraxt_users_items(test: pd.DataFrame):
+    """Возвращает array из баннеров в тесте и array из юзеров в тесте"""
+    users_array = test['oaid_hash']
+    items_array = test['banner_id']
+    users_array= np.array(users_array, dtype=np.int64)
+    items_array = np.array(items_array, dtype=np.int32)
+    return users_array, items_array
