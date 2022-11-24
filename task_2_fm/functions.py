@@ -1,6 +1,7 @@
 import pandas as pd
 import datetime as dtime
 import numpy as np
+from tqdm import tqdm
 from sklearn.model_selection import cross_val_score
 from sklearn.metrics import log_loss, roc_auc_score
 import lightfm
@@ -131,21 +132,25 @@ def prepare_data(data: pd.DataFrame):
     return user_item_train, user_item_test, user_feat_train, item_feat_train, user_feat_test, item_feat_test
 
 
-def test_model(prediction, Y_test: pd.DataFrame):
-    # возьмем только вероятность клика
-    prediction = prediction[:, 1]
-    auc = roc_auc_score(Y_test, prediction)
-    print(f"Log loss: {log_loss(Y_test, prediction)}")
+def test_model(model, user_item_test, user_feat_test, item_feat_test):
+    auc = auc_score(model, test_interactions=user_item_test,
+                           user_features=user_feat_test,
+                           item_features=item_feat_test).mean()
     print(f"Auc: {auc}")
 
 
-def cv( metric: str):
+def cv(user_item_train, user_feat_train, item_feat_train):
     scores = dict()
-    for n in [5, 10, 20]:
+    train, test = lightfm.cross_validation.random_train_test_split(user_item_train, test_percentage=0.3,
+                                                                   random_state=22)
+    for n in tqdm([5, 10, 20]):
         model = LightFM(no_components=n)
-        model.fit(X_train, Y_train)
-        score = cross_val_score(model, X_train, Y_train, n_jobs=-1, cv=3, scoring=metric)
-        scores[n] = np.mean(score)
+        model.fit(interactions=user_item_train,
+                  user_features=user_feat_train,
+                  item_features=item_feat_train,
+                  epochs=40)
+        score = auc_score(model, train).mean()
+        scores[n] = score
         print(f"N factors: {n}, score: {score}")
 
     opt_params = max(scores, key=scores.get)
