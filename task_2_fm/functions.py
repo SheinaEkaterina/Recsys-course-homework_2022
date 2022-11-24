@@ -2,18 +2,14 @@ import pandas as pd
 import datetime as dtime
 import numpy as np
 from tqdm import tqdm
-from sklearn.model_selection import cross_val_score
-from sklearn.metrics import log_loss, roc_auc_score
 import lightfm
 from lightfm import LightFM
 from lightfm.evaluation import auc_score
 import scipy.sparse as sps
-from sklearn.feature_extraction import DictVectorizer
 
 
 def analyse_new_columns(data: pd.DataFrame):
     print("Количество записей в таблице: ", data.shape[0])
-
     print()
     print("Новые колонки")
     for feature in ['oaid_hash']:
@@ -50,10 +46,7 @@ def feature_engineering(data: pd.DataFrame) -> pd.DataFrame:
     # ######################
     data['month'] = data['date_time'].dt.month
     data['month'] = data['month'] - 9
-
-    data['date_copy'] = data['date']  # ???
     return data
-
 
 def one_hot(data: pd.DataFrame):
     cats_zone = data['zone_id'].value_counts()[lambda x: x > 300000].index
@@ -65,10 +58,12 @@ def one_hot(data: pd.DataFrame):
     data = pd.get_dummies(data, columns=other_cat_features, drop_first=True)
     data = pd.concat([data, zone_col], axis=1)
     data = pd.concat([data, country_col], axis=1)
+    # уберем лишние колонки
+    data = data.drop(columns=['date_time', 'time'])
     return data
 
 
-def item_feature_matrix(data):
+def item_feature_matrix(data: pd.DataFrame):
     """
     Матрица фичей баннеров
     item features - zone_id, time_of_day, is_weekend, month"""
@@ -88,7 +83,7 @@ def item_feature_matrix(data):
     return data
 
 
-def user_feature_matrix(data):
+def user_feature_matrix(data: pd.DataFrame):
     """
     Матрица фичей юзеров
     user features - os_id, country_id"""
@@ -108,7 +103,7 @@ def user_feature_matrix(data):
     return data
 
 
-def item_user_matrix(data):
+def item_user_matrix(data: pd.DataFrame):
     """Матрица, где юзерам поставлены в соответствие баннеры, по которым они кликнули"""
     user_item_table = data.loc[data['clicks'] == 1]
     user_item_table = user_item_table.loc[:, ['oaid_hash', 'banner_id']]
@@ -116,13 +111,16 @@ def item_user_matrix(data):
     user_item_matrix = sps.csr_matrix(user_item_table, dtype=np.int32)
     return user_item_matrix
 
-
-def prepare_data(data: pd.DataFrame):
-    """Сделаем разбивку на тестовое и тренировочное множества.
-    Создадим матрицы с фичами пользователя, с фичами баннера и матрицу пользователь-баннер"""
+def train_test_split(data):
     last_day = data['date'].max()
     test = data.loc[data['date'] == last_day]
     train = data.loc[data['date'] < last_day]
+    return train, test
+
+
+def prepare_data(train, test):
+    """Сделаем разбивку на тестовое и тренировочное множества.
+    Создадим матрицы с фичами пользователя, с фичами баннера и матрицу пользователь-баннер"""
     user_feat_train = user_feature_matrix(train)
     item_feat_train = item_feature_matrix(train)
     user_feat_test = user_feature_matrix(test)
