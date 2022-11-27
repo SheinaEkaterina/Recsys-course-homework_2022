@@ -1,0 +1,1733 @@
+[I 16:40:15.940 NotebookApp] Serving notebooks from local directory: C:/Users/Mi/2022/rec_sys/Recsys-course-homework_2022/task_2_fm
+[I 16:40:15.940 NotebookApp] Jupyter Notebook 6.5.2 is running at:
+[I 16:40:15.940 NotebookApp] http://localhost:8888/?token=7482c43aa26df71536afaa80b4208782d951e090b770be53
+[I 16:40:15.940 NotebookApp]  or http://127.0.0.1:8888/?token=7482c43aa26df71536afaa80b4208782d951e090b770be53
+[I 16:40:15.940 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 16:40:15.946 NotebookApp]
+
+    To access the notebook, open this file in a browser:
+        file:///C:/Users/Mi/AppData/Roaming/jupyter/runtime/nbserver-22836-open.html
+    Or copy and paste one of these URLs:
+        http://localhost:8888/?token=7482c43aa26df71536afaa80b4208782d951e090b770be53
+     or http://127.0.0.1:8888/?token=7482c43aa26df71536afaa80b4208782d951e090b770be53
+[I 16:40:15.949 NotebookApp] 302 GET /api/kernelspecs/ (127.0.0.1) 2.010000ms
+0.01s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+[I 16:40:16.722 NotebookApp] Kernel started: 878f028e-b1e6-41fc-b13b-2ce730637157, name: python3
+[W 16:40:16.733 NotebookApp] No session ID specified
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) NOT found. Convert text file to binary file.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) NOT found. Convert text file to binary file.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) NOT found. Convert text file to binary file.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) NOT found. Convert text file to binary file.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 1.16 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 24.86 MB
+[------------] Time cost for model initial: 0.15 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.110839            0.102803            0.741935                0.13
+[   20%      ]     2            0.105694            0.101646            0.754389                0.11
+[   30%      ]     3            0.102977            0.101180            0.757437                0.09
+[   40%      ]     4            0.100535            0.101008            0.758350                0.16
+[   50%      ]     5            0.097801            0.101015            0.757557                0.22
+[   60%      ]     6            0.094208            0.101031            0.756679                0.10
+[   70%      ]     7            0.089133            0.101060            0.755311                0.09
+[   80%      ]     8            0.081948            0.101217            0.753106                0.10
+[   90%      ]     9            0.072485            0.101437            0.750334                0.09
+[  100%      ]    10            0.061345            0.102014            0.745506                0.09
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108750            0.109389            0.728362                0.09
+[   20%      ]     2            0.103572            0.108204            0.741214                0.08
+[   30%      ]     3            0.100910            0.107689            0.745634                0.09
+[   40%      ]     4            0.098490            0.107434            0.747746                0.17
+[   50%      ]     5            0.095779            0.107352            0.748497                0.09
+[   60%      ]     6            0.092314            0.107277            0.749003                0.09
+[   70%      ]     7            0.087409            0.107275            0.748374                0.09
+[   80%      ]     8            0.080473            0.107448            0.746939                0.09
+[   90%      ]     9            0.071372            0.107657            0.744237                0.09
+[  100%      ]    10            0.060846            0.108170            0.739765                0.09
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108705            0.109568            0.722699                0.08
+[   20%      ]     2            0.103537            0.108386            0.735291                0.09
+[   30%      ]     3            0.100864            0.107950            0.739215                0.09
+[   40%      ]     4            0.098461            0.107759            0.740696                0.08
+[   50%      ]     5            0.095863            0.107689            0.741320                0.09
+[   60%      ]     6            0.092500            0.107618            0.741501                0.08
+[   70%      ]     7            0.087738            0.107711            0.740737                0.09
+[   80%      ]     8            0.080853            0.107827            0.739529                0.08
+[   90%      ]     9            0.071437            0.108158            0.737029                0.08
+[  100%      ]    10            0.059963            0.108755            0.732853                0.09
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109714            0.106175            0.732137                0.08
+[   20%      ]     2            0.104498            0.105237            0.738489                0.08
+[   30%      ]     3            0.101797            0.104756            0.739717                0.25
+[   40%      ]     4            0.099381            0.104609            0.739937                0.10
+[   50%      ]     5            0.096611            0.104503            0.740153                0.09
+[   60%      ]     6            0.092992            0.104542            0.739888                0.09
+[   70%      ]     7            0.087740            0.104592            0.738597                0.09
+[   80%      ]     8            0.080206            0.104774            0.736520                0.08
+[   90%      ]     9            0.070106            0.105091            0.733723                0.09
+[  100%      ]    10            0.058330            0.105683            0.729653                0.09
+[------------] Average log_loss: 0.106156
+[------------] Average AUC: 0.736945
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 5.66 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.23 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 24.86 MB
+[------------] Time cost for model initial: 0.09 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.110812            0.102782            0.741968                0.09
+[   20%      ]     2            0.105685            0.101571            0.754312                0.08
+[   30%      ]     3            0.102956            0.101193            0.757545                0.09
+[   40%      ]     4            0.100538            0.101006            0.758489                0.12
+[   50%      ]     5            0.097862            0.100984            0.757910                0.44
+[   60%      ]     6            0.094436            0.100995            0.757069                0.16
+[   70%      ]     7            0.089646            0.101032            0.755819                0.11
+[   80%      ]     8            0.082915            0.101185            0.753746                0.11
+[   90%      ]     9            0.073970            0.101384            0.751243                0.12
+[  100%      ]    10            0.063215            0.101913            0.746641                0.13
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108712            0.109355            0.728470                0.11
+[   20%      ]     2            0.103578            0.108170            0.741310                0.11
+[   30%      ]     3            0.100925            0.107709            0.745400                0.10
+[   40%      ]     4            0.098543            0.107438            0.747591                0.09
+[   50%      ]     5            0.095887            0.107321            0.748649                0.09
+[   60%      ]     6            0.092455            0.107192            0.749186                0.09
+[   70%      ]     7            0.087662            0.107181            0.748517                0.08
+[   80%      ]     8            0.080892            0.107309            0.747176                0.08
+[   90%      ]     9            0.072036            0.107439            0.745224                0.09
+[  100%      ]    10            0.061631            0.107880            0.741356                0.20
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108715            0.109497            0.724182                0.08
+[   20%      ]     2            0.103470            0.108355            0.736081                0.09
+[   30%      ]     3            0.100807            0.107922            0.739766                0.10
+[   40%      ]     4            0.098414            0.107692            0.741412                0.10
+[   50%      ]     5            0.095760            0.107606            0.741992                0.09
+[   60%      ]     6            0.092358            0.107579            0.742188                0.09
+[   70%      ]     7            0.087478            0.107692            0.741338                0.09
+[   80%      ]     8            0.080424            0.107863            0.739755                0.09
+[   90%      ]     9            0.070903            0.108121            0.737296                0.09
+[  100%      ]    10            0.059534            0.108803            0.732930                0.09
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109681            0.106198            0.732037                0.08
+[   20%      ]     2            0.104516            0.105227            0.738777                0.19
+[   30%      ]     3            0.101828            0.104769            0.740217                0.19
+[   40%      ]     4            0.099402            0.104599            0.740343                0.11
+[   50%      ]     5            0.096602            0.104521            0.740370                0.10
+[   60%      ]     6            0.092858            0.104498            0.740030                0.09
+[   70%      ]     7            0.087369            0.104512            0.739071                0.09
+[   80%      ]     8            0.079375            0.104668            0.737039                0.16
+[   90%      ]     9            0.068669            0.104956            0.734246                0.13
+[  100%      ]    10            0.056530            0.105639            0.729681                0.09
+[------------] Average log_loss: 0.106059
+[------------] Average AUC: 0.737652
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 5.28 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.39 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 24.86 MB
+[------------] Time cost for model initial: 0.13 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.110891            0.102856            0.741132                0.12
+[   20%      ]     2            0.105834            0.101710            0.754093                0.11
+[   30%      ]     3            0.103234            0.101241            0.757753                0.10
+[   40%      ]     4            0.100980            0.100945            0.759435                0.10
+[   50%      ]     5            0.098704            0.100870            0.759583                0.09
+[   60%      ]     6            0.096061            0.100837            0.759642                0.09
+[   70%      ]     7            0.092692            0.100789            0.759081                0.09
+[   80%      ]     8            0.088211            0.100881            0.758036                0.09
+[   90%      ]     9            0.082357            0.100898            0.756889                0.10
+[  100%      ]    10            0.075061            0.101061            0.754747                0.09
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108807            0.109423            0.727789                0.08
+[   20%      ]     2            0.103714            0.108282            0.740851                0.08
+[   30%      ]     3            0.101166            0.107750            0.745493                0.09
+[   40%      ]     4            0.098962            0.107445            0.748042                0.08
+[   50%      ]     5            0.096676            0.107274            0.749516                0.08
+[   60%      ]     6            0.094044            0.107125            0.750272                0.09
+[   70%      ]     7            0.090649            0.107047            0.750453                0.22
+[   80%      ]     8            0.086084            0.107059            0.750008                0.10
+[   90%      ]     9            0.080085            0.107008            0.749543                0.09
+[  100%      ]    10            0.072608            0.107060            0.747935                0.09
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108814            0.109625            0.722337                0.08
+[   20%      ]     2            0.103665            0.108450            0.734602                0.09
+[   30%      ]     3            0.101095            0.107974            0.739298                0.08
+[   40%      ]     4            0.098897            0.107769            0.741075                0.08
+[   50%      ]     5            0.096688            0.107580            0.742364                0.08
+[   60%      ]     6            0.094160            0.107510            0.742935                0.08
+[   70%      ]     7            0.090982            0.107518            0.742990                0.08
+[   80%      ]     8            0.086813            0.107530            0.742707                0.08
+[   90%      ]     9            0.081291            0.107640            0.741989                0.08
+[  100%      ]    10            0.074293            0.107713            0.740849                0.07
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109778            0.106282            0.731626                0.08
+[   20%      ]     2            0.104663            0.105322            0.738422                0.08
+[   30%      ]     3            0.102092            0.104963            0.739919                0.08
+[   40%      ]     4            0.099897            0.104661            0.740579                0.08
+[   50%      ]     5            0.097581            0.104582            0.740508                0.08
+[   60%      ]     6            0.094871            0.104523            0.740487                0.07
+[   70%      ]     7            0.091302            0.104449            0.740227                0.07
+[   80%      ]     8            0.086413            0.104503            0.739045                0.08
+[   90%      ]     9            0.079780            0.104495            0.738065                0.08
+[  100%      ]    10            0.071402            0.104677            0.735925                0.07
+[------------] Average log_loss: 0.105128
+[------------] Average AUC: 0.744864
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 4.32 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.21 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 24.86 MB
+[------------] Time cost for model initial: 0.08 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.111353            0.103917            0.738453                0.08
+[   20%      ]     2            0.106837            0.102709            0.747877                0.08
+[   30%      ]     3            0.104692            0.102153            0.751213                0.08
+[   40%      ]     4            0.103016            0.101893            0.753167                0.08
+[   50%      ]     5            0.101547            0.101694            0.753832                0.08
+[   60%      ]     6            0.100174            0.101575            0.754760                0.08
+[   70%      ]     7            0.098823            0.101453            0.754586                0.08
+[   80%      ]     8            0.097435            0.101400            0.754575                0.08
+[   90%      ]     9            0.096017            0.101318            0.754744                0.07
+[  100%      ]    10            0.094469            0.101266            0.754845                0.07
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109251            0.110149            0.724785                0.07
+[   20%      ]     2            0.104734            0.109129            0.735775                0.08
+[   30%      ]     3            0.102619            0.108644            0.739701                0.09
+[   40%      ]     4            0.100976            0.108358            0.741687                0.08
+[   50%      ]     5            0.099524            0.108232            0.742668                0.08
+[   60%      ]     6            0.098194            0.108063            0.743588                0.08
+[   70%      ]     7            0.096890            0.107992            0.743933                0.08
+[   80%      ]     8            0.095573            0.107945            0.744118                0.08
+[   90%      ]     9            0.094204            0.107854            0.744408                0.08
+[  100%      ]    10            0.092715            0.107798            0.744484                0.08
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109222            0.110314            0.719884                0.07
+[   20%      ]     2            0.104685            0.109140            0.729939                0.07
+[   30%      ]     3            0.102503            0.108699            0.734642                0.08
+[   40%      ]     4            0.100858            0.108462            0.735924                0.08
+[   50%      ]     5            0.099391            0.108225            0.737725                0.08
+[   60%      ]     6            0.098041            0.108118            0.738267                0.08
+[   70%      ]     7            0.096728            0.108043            0.738547                0.08
+[   80%      ]     8            0.095391            0.108008            0.738663                0.08
+[   90%      ]     9            0.094010            0.107980            0.738729                0.08
+[  100%      ]    10            0.092539            0.107902            0.738974                0.07
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.110210            0.106993            0.731480                0.07
+[   20%      ]     2            0.105639            0.106073            0.737971                0.07
+[   30%      ]     3            0.103543            0.105661            0.740307                0.08
+[   40%      ]     4            0.101906            0.105280            0.741383                0.08
+[   50%      ]     5            0.100441            0.105128            0.741708                0.07
+[   60%      ]     6            0.099096            0.104966            0.742182                0.07
+[   70%      ]     7            0.097768            0.104844            0.742222                0.07
+[   80%      ]     8            0.096461            0.104751            0.742189                0.08
+[   90%      ]     9            0.095094            0.104658            0.742332                0.09
+[  100%      ]    10            0.093644            0.104604            0.742333                0.08
+[------------] Average log_loss: 0.105393
+[------------] Average AUC: 0.745159
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 3.65 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.27 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 24.86 MB
+[------------] Time cost for model initial: 0.09 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.113374            0.106729            0.736138                0.08
+[   20%      ]     2            0.110117            0.106004            0.736029                0.09
+[   30%      ]     3            0.108576            0.105819            0.737721                0.20
+[   40%      ]     4            0.107333            0.105730            0.737684                0.10
+[   50%      ]     5            0.106298            0.105564            0.737651                0.09
+[   60%      ]     6            0.105304            0.105505            0.737975                0.09
+[   70%      ]     7            0.104425            0.105404            0.736485                0.09
+[   80%      ]     8            0.103592            0.105375            0.736204                0.09
+[   90%      ]     9            0.102833            0.105326            0.736071                0.08
+[  100%      ]    10            0.102082            0.105296            0.735976                0.08
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.111232            0.112875            0.717737                0.08
+[   20%      ]     2            0.108009            0.112345            0.724360                0.08
+[   30%      ]     3            0.106514            0.112173            0.725209                0.08
+[   40%      ]     4            0.105312            0.111964            0.726084                0.08
+[   50%      ]     5            0.104236            0.111877            0.725854                0.09
+[   60%      ]     6            0.103319            0.111749            0.725651                0.09
+[   70%      ]     7            0.102442            0.111683            0.725391                0.08
+[   80%      ]     8            0.101621            0.111659            0.725121                0.09
+[   90%      ]     9            0.100896            0.111612            0.724919                0.08
+[  100%      ]    10            0.100176            0.111550            0.724582                0.09
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.111192            0.112986            0.715174                0.09
+[   20%      ]     2            0.108035            0.112240            0.719262                0.12
+[   30%      ]     3            0.106508            0.111973            0.719848                0.15
+[   40%      ]     4            0.105306            0.111799            0.717803                0.13
+[   50%      ]     5            0.104225            0.111674            0.719196                0.10
+[   60%      ]     6            0.103303            0.111569            0.718792                0.15
+[   70%      ]     7            0.102416            0.111473            0.718922                0.14
+[   80%      ]     8            0.101591            0.111430            0.719027                0.13
+[   90%      ]     9            0.100826            0.111403            0.717962                0.10
+[  100%      ]    10            0.100096            0.111332            0.717953                0.20
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.112260            0.109724            0.729410                0.09
+[   20%      ]     2            0.109031            0.109168            0.731860                0.09
+[   30%      ]     3            0.107554            0.108971            0.733207                0.09
+[   40%      ]     4            0.106350            0.108727            0.732596                0.08
+[   50%      ]     5            0.105287            0.108572            0.732478                0.09
+[   60%      ]     6            0.104337            0.108480            0.731320                0.09
+[   70%      ]     7            0.103475            0.108400            0.730698                0.09
+[   80%      ]     8            0.102651            0.108334            0.730038                0.08
+[   90%      ]     9            0.101877            0.108256            0.730050                0.08
+[  100%      ]    10            0.101172            0.108197            0.729551                0.08
+[------------] Average log_loss: 0.109094
+[------------] Average AUC: 0.727015
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 4.66 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.32 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 24.86 MB
+[------------] Time cost for model initial: 0.17 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.110831            0.102777            0.744822                0.08
+[   20%      ]     2            0.105585            0.101452            0.756975                0.09
+[   30%      ]     3            0.102593            0.101030            0.759866                0.09
+[   40%      ]     4            0.099579            0.100786            0.761132                0.08
+[   50%      ]     5            0.095665            0.100764            0.760884                0.08
+[   60%      ]     6            0.089605            0.100848            0.759690                0.09
+[   70%      ]     7            0.079991            0.100902            0.757479                0.08
+[   80%      ]     8            0.066573            0.101493            0.753662                0.08
+[   90%      ]     9            0.051429            0.102608            0.747770                0.08
+[  100%      ]    10            0.037459            0.105019            0.738300                0.09
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108750            0.109307            0.729874                0.08
+[   20%      ]     2            0.103450            0.108023            0.743621                0.08
+[   30%      ]     3            0.100561            0.107471            0.748297                0.09
+[   40%      ]     4            0.097588            0.107184            0.750716                0.08
+[   50%      ]     5            0.093666            0.107126            0.751415                0.08
+[   60%      ]     6            0.087525            0.106990            0.751564                0.08
+[   70%      ]     7            0.077665            0.107110            0.749813                0.14
+[   80%      ]     8            0.063767            0.107633            0.745499                0.09
+[   90%      ]     9            0.048420            0.109134            0.738260                0.09
+[  100%      ]    10            0.035190            0.111737            0.728380                0.09
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108740            0.109456            0.724248                0.31
+[   20%      ]     2            0.103382            0.108194            0.737388                0.15
+[   30%      ]     3            0.100499            0.107710            0.742433                0.10
+[   40%      ]     4            0.097610            0.107519            0.744361                0.09
+[   50%      ]     5            0.093951            0.107509            0.744754                0.09
+[   60%      ]     6            0.088385            0.107505            0.745138                0.09
+[   70%      ]     7            0.079586            0.107701            0.743363                0.08
+[   80%      ]     8            0.067012            0.108219            0.740728                0.09
+[   90%      ]     9            0.052147            0.109587            0.734848                0.08
+[  100%      ]    10            0.037877            0.111807            0.727110                0.09
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109659            0.106257            0.732005                0.10
+[   20%      ]     2            0.104293            0.105248            0.738684                0.11
+[   30%      ]     3            0.101325            0.104779            0.740907                0.09
+[   40%      ]     4            0.098377            0.104684            0.740924                0.09
+[   50%      ]     5            0.094492            0.104624            0.740966                0.09
+[   60%      ]     6            0.088388            0.104584            0.740596                0.19
+[   70%      ]     7            0.078399            0.104697            0.738859                0.23
+[   80%      ]     8            0.064205            0.105083            0.736426                0.13
+[   90%      ]     9            0.048646            0.106308            0.732598                0.11
+[  100%      ]    10            0.035138            0.108680            0.727095                0.13
+[------------] Average log_loss: 0.109311
+[------------] Average AUC: 0.730221
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 5.21 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.33 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 24.86 MB
+[------------] Time cost for model initial: 0.20 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.110846            0.102709            0.744813                0.18
+[   20%      ]     2            0.105584            0.101435            0.757172                0.11
+[   30%      ]     3            0.102612            0.101053            0.760028                0.12
+[   40%      ]     4            0.099635            0.100838            0.761073                0.12
+[   50%      ]     5            0.095863            0.100778            0.760801                0.10
+[   60%      ]     6            0.090085            0.100808            0.760016                0.09
+[   70%      ]     7            0.080939            0.100883            0.757667                0.10
+[   80%      ]     8            0.067948            0.101406            0.754201                0.10
+[   90%      ]     9            0.053028            0.102371            0.748917                0.09
+[  100%      ]    10            0.039185            0.104549            0.740409                0.08
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108723            0.109315            0.730003                0.09
+[   20%      ]     2            0.103448            0.108097            0.742979                0.08
+[   30%      ]     3            0.100544            0.107497            0.747918                0.10
+[   40%      ]     4            0.097556            0.107200            0.750430                0.09
+[   50%      ]     5            0.093605            0.107099            0.751531                0.08
+[   60%      ]     6            0.087313            0.107042            0.751155                0.10
+[   70%      ]     7            0.077162            0.107126            0.749361                0.11
+[   80%      ]     8            0.062974            0.107774            0.744457                0.13
+[   90%      ]     9            0.047532            0.109484            0.736757                0.19
+[  100%      ]    10            0.034425            0.112129            0.727098                0.11
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108703            0.109350            0.725224                0.10
+[   20%      ]     2            0.103386            0.108188            0.737626                0.09
+[   30%      ]     3            0.100535            0.107753            0.742091                0.08
+[   40%      ]     4            0.097699            0.107562            0.744083                0.09
+[   50%      ]     5            0.094190            0.107506            0.744451                0.08
+[   60%      ]     6            0.088986            0.107489            0.744723                0.08
+[   70%      ]     7            0.080847            0.107716            0.743045                0.08
+[   80%      ]     8            0.069163            0.108136            0.740558                0.09
+[   90%      ]     9            0.055128            0.109248            0.735510                0.08
+[  100%      ]    10            0.041350            0.110993            0.728578                0.08
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109721            0.106264            0.732045                0.07
+[   20%      ]     2            0.104346            0.105341            0.738647                0.08
+[   30%      ]     3            0.101408            0.104793            0.741121                0.08
+[   40%      ]     4            0.098507            0.104655            0.741498                0.08
+[   50%      ]     5            0.094821            0.104582            0.741668                0.09
+[   60%      ]     6            0.089173            0.104615            0.740945                0.25
+[   70%      ]     7            0.080047            0.104597            0.740126                0.10
+[   80%      ]     8            0.066956            0.104874            0.738557                0.10
+[   90%      ]     9            0.051845            0.105709            0.735700                0.10
+[  100%      ]    10            0.037884            0.107659            0.731330                0.09
+[------------] Average log_loss: 0.108833
+[------------] Average AUC: 0.731854
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 5.18 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.24 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 24.86 MB
+[------------] Time cost for model initial: 0.17 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.110901            0.103000            0.744325                0.08
+[   20%      ]     2            0.105730            0.101613            0.755999                0.08
+[   30%      ]     3            0.102960            0.101115            0.759500                0.09
+[   40%      ]     4            0.100418            0.100817            0.761547                0.20
+[   50%      ]     5            0.097527            0.100719            0.761940                0.12
+[   60%      ]     6            0.093744            0.100650            0.761959                0.10
+[   70%      ]     7            0.088364            0.100613            0.760950                0.09
+[   80%      ]     8            0.080888            0.100693            0.759543                0.10
+[   90%      ]     9            0.071388            0.100714            0.757993                0.09
+[  100%      ]    10            0.060729            0.101171            0.754685                0.08
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108767            0.109380            0.729168                0.08
+[   20%      ]     2            0.103596            0.108180            0.742343                0.08
+[   30%      ]     3            0.100904            0.107712            0.747010                0.08
+[   40%      ]     4            0.098371            0.107223            0.750261                0.08
+[   50%      ]     5            0.095484            0.107073            0.751910                0.08
+[   60%      ]     6            0.091590            0.106870            0.753076                0.08
+[   70%      ]     7            0.085862            0.106797            0.752697                0.09
+[   80%      ]     8            0.077694            0.106798            0.751911                0.08
+[   90%      ]     9            0.067301            0.106942            0.750313                0.09
+[  100%      ]    10            0.055945            0.107463            0.746798                0.09
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108746            0.109609            0.723082                0.13
+[   20%      ]     2            0.103588            0.108293            0.736312                0.13
+[   30%      ]     3            0.100908            0.107841            0.741346                0.10
+[   40%      ]     4            0.098487            0.107583            0.743625                0.09
+[   50%      ]     5            0.095830            0.107379            0.745373                0.10
+[   60%      ]     6            0.092373            0.107249            0.746546                0.16
+[   70%      ]     7            0.087448            0.107245            0.746666                0.09
+[   80%      ]     8            0.080459            0.107241            0.746402                0.09
+[   90%      ]     9            0.071218            0.107523            0.744955                0.09
+[  100%      ]    10            0.060506            0.107869            0.742400                0.08
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109741            0.106318            0.731955                0.09
+[   20%      ]     2            0.104524            0.105429            0.738525                0.08
+[   30%      ]     3            0.101831            0.104923            0.740954                0.08
+[   40%      ]     4            0.099351            0.104601            0.742403                0.08
+[   50%      ]     5            0.096552            0.104426            0.743186                0.08
+[   60%      ]     6            0.092837            0.104401            0.743028                0.09
+[   70%      ]     7            0.087436            0.104310            0.742748                0.09
+[   80%      ]     8            0.079562            0.104290            0.742281                0.09
+[   90%      ]     9            0.069154            0.104341            0.741707                0.08
+[  100%      ]    10            0.057420            0.104672            0.740158                0.08
+[------------] Average log_loss: 0.105294
+[------------] Average AUC: 0.746010
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 4.85 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.23 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 24.86 MB
+[------------] Time cost for model initial: 0.16 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.111376            0.103839            0.737287                0.07
+[   20%      ]     2            0.106853            0.102700            0.746708                0.14
+[   30%      ]     3            0.104684            0.102218            0.750523                0.10
+[   40%      ]     4            0.102990            0.101897            0.752937                0.11
+[   50%      ]     5            0.101523            0.101703            0.753973                0.09
+[   60%      ]     6            0.100121            0.101578            0.754541                0.09
+[   70%      ]     7            0.098729            0.101409            0.754595                0.09
+[   80%      ]     8            0.097294            0.101358            0.754751                0.09
+[   90%      ]     9            0.095795            0.101279            0.754973                0.08
+[  100%      ]    10            0.094118            0.101196            0.755191                0.09
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109285            0.110181            0.724899                0.08
+[   20%      ]     2            0.104780            0.109144            0.735747                0.20
+[   30%      ]     3            0.102653            0.108641            0.739929                0.40
+[   40%      ]     4            0.100985            0.108366            0.741761                0.15
+[   50%      ]     5            0.099479            0.108311            0.742576                0.12
+[   60%      ]     6            0.098143            0.108048            0.743542                0.25
+[   70%      ]     7            0.096777            0.107945            0.744090                0.20
+[   80%      ]     8            0.095375            0.107908            0.744186                0.16
+[   90%      ]     9            0.093879            0.107825            0.744543                0.11
+[  100%      ]    10            0.092214            0.107743            0.744670                0.35
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109264            0.110363            0.719532                0.09
+[   20%      ]     2            0.104710            0.109132            0.730252                0.09
+[   30%      ]     3            0.102541            0.108683            0.734502                0.09
+[   40%      ]     4            0.100856            0.108409            0.735878                0.08
+[   50%      ]     5            0.099376            0.108226            0.737487                0.08
+[   60%      ]     6            0.098019            0.108113            0.738133                0.08
+[   70%      ]     7            0.096659            0.108035            0.738635                0.09
+[   80%      ]     8            0.095252            0.107975            0.739016                0.08
+[   90%      ]     9            0.093769            0.107910            0.739056                0.09
+[  100%      ]    10            0.092151            0.107870            0.739333                0.08
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.110269            0.107143            0.730573                0.07
+[   20%      ]     2            0.105701            0.106127            0.737611                0.08
+[   30%      ]     3            0.103562            0.105575            0.740301                0.08
+[   40%      ]     4            0.101897            0.105288            0.741262                0.08
+[   50%      ]     5            0.100419            0.105104            0.741685                0.09
+[   60%      ]     6            0.099023            0.104923            0.742144                0.08
+[   70%      ]     7            0.097655            0.104795            0.742312                0.08
+[   80%      ]     8            0.096231            0.104725            0.742137                0.08
+[   90%      ]     9            0.094730            0.104630            0.742364                0.09
+[  100%      ]    10            0.093095            0.104565            0.742372                0.20
+[------------] Average log_loss: 0.105344
+[------------] Average AUC: 0.745392
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 5.68 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.26 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 24.86 MB
+[------------] Time cost for model initial: 0.16 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.113329            0.106707            0.735501                0.08
+[   20%      ]     2            0.110095            0.106019            0.736842                0.08
+[   30%      ]     3            0.108545            0.105828            0.736482                0.08
+[   40%      ]     4            0.107331            0.105677            0.737238                0.18
+[   50%      ]     5            0.106264            0.105594            0.737528                0.17
+[   60%      ]     6            0.105292            0.105506            0.737935                0.10
+[   70%      ]     7            0.104410            0.105400            0.736542                0.09
+[   80%      ]     8            0.103573            0.105366            0.736069                0.09
+[   90%      ]     9            0.102824            0.105307            0.735630                0.09
+[  100%      ]    10            0.102077            0.105281            0.735835                0.10
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.111174            0.112839            0.718106                0.14
+[   20%      ]     2            0.107989            0.112358            0.724694                0.23
+[   30%      ]     3            0.106486            0.112107            0.725506                0.32
+[   40%      ]     4            0.105290            0.111932            0.726328                0.10
+[   50%      ]     5            0.104228            0.111812            0.725477                0.09
+[   60%      ]     6            0.103282            0.111694            0.725958                0.09
+[   70%      ]     7            0.102392            0.111666            0.725763                0.09
+[   80%      ]     8            0.101594            0.111630            0.725277                0.16
+[   90%      ]     9            0.100865            0.111551            0.725094                0.09
+[  100%      ]    10            0.100142            0.111506            0.724391                0.09
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.111234            0.112962            0.716152                0.09
+[   20%      ]     2            0.108034            0.112217            0.718844                0.09
+[   30%      ]     3            0.106503            0.111963            0.719663                0.09
+[   40%      ]     4            0.105303            0.111769            0.716956                0.08
+[   50%      ]     5            0.104218            0.111650            0.719147                0.08
+[   60%      ]     6            0.103279            0.111523            0.718397                0.08
+[   70%      ]     7            0.102388            0.111444            0.718668                0.08
+[   80%      ]     8            0.101581            0.111394            0.718409                0.09
+[   90%      ]     9            0.100822            0.111352            0.717588                0.08
+[  100%      ]    10            0.100085            0.111308            0.717959                0.08
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.112255            0.109744            0.729642                0.08
+[   20%      ]     2            0.109021            0.109160            0.732736                0.08
+[   30%      ]     3            0.107529            0.108862            0.734233                0.10
+[   40%      ]     4            0.106330            0.108706            0.732110                0.09
+[   50%      ]     5            0.105279            0.108569            0.732516                0.09
+[   60%      ]     6            0.104337            0.108469            0.731431                0.09
+[   70%      ]     7            0.103450            0.108382            0.731142                0.09
+[   80%      ]     8            0.102637            0.108289            0.730427                0.10
+[   90%      ]     9            0.101874            0.108221            0.730118                0.67
+[  100%      ]    10            0.101164            0.108154            0.729627                0.19
+[------------] Average log_loss: 0.109062
+[------------] Average AUC: 0.726953
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 5.90 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.46 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 48.73 MB
+[------------] Time cost for model initial: 0.85 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.110840            0.102673            0.744029                0.12
+[   20%      ]     2            0.105351            0.101488            0.755936                0.17
+[   30%      ]     3            0.102198            0.101143            0.757853                0.11
+[   40%      ]     4            0.098918            0.101006            0.758126                0.11
+[   50%      ]     5            0.094343            0.101173            0.756788                0.11
+[   60%      ]     6            0.086358            0.101380            0.754500                0.11
+[   70%      ]     7            0.072657            0.101680            0.750166                0.10
+[   80%      ]     8            0.054200            0.103313            0.741336                0.26
+[   90%      ]     9            0.036263            0.106857            0.726618                0.13
+[  100%      ]    10            0.023288            0.112000            0.712605                0.12
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108750            0.109237            0.731330                0.09
+[   20%      ]     2            0.103262            0.107833            0.745578                0.11
+[   30%      ]     3            0.100207            0.107284            0.750183                0.10
+[   40%      ]     4            0.097120            0.107001            0.752750                0.09
+[   50%      ]     5            0.092770            0.106892            0.754009                0.09
+[   60%      ]     6            0.085040            0.106710            0.754300                0.09
+[   70%      ]     7            0.071172            0.106788            0.751369                0.08
+[   80%      ]     8            0.052178            0.108198            0.743573                0.08
+[   90%      ]     9            0.034578            0.111615            0.731498                0.08
+[  100%      ]    10            0.022552            0.116681            0.720740                0.14
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108636            0.109483            0.724718                0.20
+[   20%      ]     2            0.103232            0.108050            0.740149                0.11
+[   30%      ]     3            0.100160            0.107580            0.744221                0.10
+[   40%      ]     4            0.097035            0.107467            0.745521                0.10
+[   50%      ]     5            0.092827            0.107578            0.745036                0.09
+[   60%      ]     6            0.085529            0.107640            0.744185                0.09
+[   70%      ]     7            0.072548            0.108141            0.740438                0.09
+[   80%      ]     8            0.053976            0.109674            0.733272                0.08
+[   90%      ]     9            0.035535            0.113431            0.721470                0.08
+[  100%      ]    10            0.022603            0.118450            0.711001                0.09
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109701            0.106117            0.733116                0.08
+[   20%      ]     2            0.104175            0.105077            0.740687                0.08
+[   30%      ]     3            0.101092            0.104658            0.741991                0.08
+[   40%      ]     4            0.097948            0.104576            0.741779                0.08
+[   50%      ]     5            0.093650            0.104573            0.741267                0.13
+[   60%      ]     6            0.086200            0.104586            0.740489                0.14
+[   70%      ]     7            0.073219            0.104523            0.739895                0.11
+[   80%      ]     8            0.055296            0.105284            0.737321                0.14
+[   90%      ]     9            0.037359            0.107756            0.732002                0.15
+[  100%      ]    10            0.024087            0.112042            0.726235                0.12
+[------------] Average log_loss: 0.114793
+[------------] Average AUC: 0.717645
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 6.86 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.26 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 48.73 MB
+[------------] Time cost for model initial: 0.34 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.110802            0.102830            0.744567                0.08
+[   20%      ]     2            0.105369            0.101475            0.755995                0.10
+[   30%      ]     3            0.102250            0.101078            0.757964                0.10
+[   40%      ]     4            0.099096            0.100982            0.758527                0.10
+[   50%      ]     5            0.094799            0.101059            0.757521                0.10
+[   60%      ]     6            0.087504            0.101260            0.755633                0.09
+[   70%      ]     7            0.075005            0.101420            0.752016                0.09
+[   80%      ]     8            0.057607            0.102864            0.743534                0.09
+[   90%      ]     9            0.039958            0.105533            0.731910                0.09
+[  100%      ]    10            0.026334            0.110155            0.717639                0.09
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108732            0.109323            0.730228                0.09
+[   20%      ]     2            0.103308            0.107914            0.745125                0.14
+[   30%      ]     3            0.100301            0.107422            0.749918                0.09
+[   40%      ]     4            0.097263            0.107069            0.752849                0.10
+[   50%      ]     5            0.093174            0.106970            0.753724                0.10
+[   60%      ]     6            0.086042            0.106746            0.754536                0.10
+[   70%      ]     7            0.073359            0.106730            0.752341                0.09
+[   80%      ]     8            0.055529            0.107821            0.745773                0.09
+[   90%      ]     9            0.037757            0.110564            0.734980                0.09
+[  100%      ]    10            0.024737            0.115036            0.724386                0.10
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108720            0.109530            0.724803                0.09
+[   20%      ]     2            0.103275            0.108074            0.739797                0.09
+[   30%      ]     3            0.100218            0.107615            0.743823                0.09
+[   40%      ]     4            0.097095            0.107470            0.745644                0.08
+[   50%      ]     5            0.092924            0.107519            0.745346                0.09
+[   60%      ]     6            0.085849            0.107539            0.744817                0.09
+[   70%      ]     7            0.073514            0.107993            0.741445                0.10
+[   80%      ]     8            0.055950            0.109217            0.735500                0.16
+[   90%      ]     9            0.038019            0.112726            0.723648                0.10
+[  100%      ]    10            0.024824            0.117217            0.712913                0.15
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109667            0.106071            0.733840                0.09
+[   20%      ]     2            0.104209            0.105071            0.740706                0.08
+[   30%      ]     3            0.101172            0.104652            0.742727                0.09
+[   40%      ]     4            0.098128            0.104451            0.742667                0.08
+[   50%      ]     5            0.094005            0.104579            0.741578                0.10
+[   60%      ]     6            0.087050            0.104494            0.741579                0.10
+[   70%      ]     7            0.074906            0.104402            0.740836                0.09
+[   80%      ]     8            0.057580            0.104954            0.738192                0.09
+[   90%      ]     9            0.039750            0.107024            0.733724                0.09
+[  100%      ]    10            0.026148            0.110832            0.728244                0.08
+[------------] Average log_loss: 0.113310
+[------------] Average AUC: 0.720796
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 5.59 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.23 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 48.73 MB
+[------------] Time cost for model initial: 0.32 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.110893            0.102945            0.742609                0.08
+[   20%      ]     2            0.105620            0.101574            0.755657                0.09
+[   30%      ]     3            0.102720            0.101140            0.758408                0.09
+[   40%      ]     4            0.100025            0.100902            0.759930                0.09
+[   50%      ]     5            0.096897            0.100870            0.759813                0.09
+[   60%      ]     6            0.092476            0.100951            0.758939                0.08
+[   70%      ]     7            0.085641            0.100892            0.757418                0.08
+[   80%      ]     8            0.075626            0.101150            0.754565                0.08
+[   90%      ]     9            0.063172            0.101541            0.751078                0.08
+[  100%      ]    10            0.050219            0.102764            0.744270                0.09
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108800            0.109384            0.729725                0.09
+[   20%      ]     2            0.103516            0.108060            0.744066                0.08
+[   30%      ]     3            0.100732            0.107523            0.748763                0.09
+[   40%      ]     4            0.098219            0.107117            0.751957                0.09
+[   50%      ]     5            0.095306            0.107003            0.753758                0.09
+[   60%      ]     6            0.091245            0.106749            0.755294                0.09
+[   70%      ]     7            0.084835            0.106582            0.755372                0.09
+[   80%      ]     8            0.075058            0.106573            0.754816                0.08
+[   90%      ]     9            0.062368            0.106806            0.752753                0.08
+[  100%      ]    10            0.049160            0.107631            0.747771                0.08
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108782            0.109513            0.723605                0.08
+[   20%      ]     2            0.103468            0.108281            0.737885                0.08
+[   30%      ]     3            0.100682            0.107725            0.743120                0.08
+[   40%      ]     4            0.098067            0.107467            0.745280                0.08
+[   50%      ]     5            0.095170            0.107389            0.746179                0.08
+[   60%      ]     6            0.091192            0.107321            0.746696                0.08
+[   70%      ]     7            0.085079            0.107401            0.746158                0.08
+[   80%      ]     8            0.075836            0.107503            0.745509                0.08
+[   90%      ]     9            0.063575            0.107923            0.743121                0.08
+[  100%      ]    10            0.050126            0.108844            0.738315                0.08
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109737            0.106211            0.733723                0.08
+[   20%      ]     2            0.104432            0.105161            0.740511                0.08
+[   30%      ]     3            0.101618            0.104611            0.743344                0.08
+[   40%      ]     4            0.099029            0.104366            0.743997                0.08
+[   50%      ]     5            0.096056            0.104324            0.743863                0.08
+[   60%      ]     6            0.091993            0.104247            0.744353                0.08
+[   70%      ]     7            0.085683            0.104152            0.744185                0.08
+[   80%      ]     8            0.076266            0.104140            0.743497                0.08
+[   90%      ]     9            0.064191            0.104272            0.743167                0.08
+[  100%      ]    10            0.051486            0.105007            0.741044                0.08
+[------------] Average log_loss: 0.106061
+[------------] Average AUC: 0.742850
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 4.78 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.23 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 48.73 MB
+[------------] Time cost for model initial: 0.34 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.111374            0.103889            0.737694                0.07
+[   20%      ]     2            0.106827            0.102665            0.746987                0.07
+[   30%      ]     3            0.104629            0.102109            0.750811                0.07
+[   40%      ]     4            0.102923            0.101843            0.753052                0.08
+[   50%      ]     5            0.101443            0.101649            0.753846                0.08
+[   60%      ]     6            0.100001            0.101523            0.754733                0.08
+[   70%      ]     7            0.098558            0.101363            0.754717                0.08
+[   80%      ]     8            0.097024            0.101314            0.754855                0.08
+[   90%      ]     9            0.095391            0.101216            0.755000                0.08
+[  100%      ]    10            0.093536            0.101171            0.755166                0.09
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109270            0.110124            0.725610                0.08
+[   20%      ]     2            0.104717            0.109081            0.736515                0.07
+[   30%      ]     3            0.102562            0.108715            0.739928                0.07
+[   40%      ]     4            0.100888            0.108329            0.742000                0.08
+[   50%      ]     5            0.099421            0.108192            0.742838                0.08
+[   60%      ]     6            0.098030            0.108059            0.743603                0.08
+[   70%      ]     7            0.096653            0.107947            0.744109                0.08
+[   80%      ]     8            0.095180            0.107896            0.744465                0.08
+[   90%      ]     9            0.093593            0.107797            0.744881                0.08
+[  100%      ]    10            0.091782            0.107713            0.744941                0.09
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109276            0.110316            0.719729                0.08
+[   20%      ]     2            0.104679            0.109097            0.730669                0.07
+[   30%      ]     3            0.102490            0.108657            0.734996                0.08
+[   40%      ]     4            0.100786            0.108389            0.736560                0.08
+[   50%      ]     5            0.099304            0.108196            0.738251                0.08
+[   60%      ]     6            0.097910            0.108084            0.738828                0.08
+[   70%      ]     7            0.096525            0.108013            0.739325                0.08
+[   80%      ]     8            0.095047            0.107964            0.739637                0.08
+[   90%      ]     9            0.093471            0.107888            0.739649                0.10
+[  100%      ]    10            0.091689            0.107860            0.739798                0.10
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.110198            0.107248            0.729527                0.15
+[   20%      ]     2            0.105647            0.106047            0.738254                0.14
+[   30%      ]     3            0.103484            0.105492            0.740976                0.11
+[   40%      ]     4            0.101809            0.105209            0.741712                0.19
+[   50%      ]     5            0.100322            0.105044            0.742195                0.18
+[   60%      ]     6            0.098928            0.104881            0.742654                0.12
+[   70%      ]     7            0.097535            0.104735            0.742954                0.10
+[   80%      ]     8            0.096066            0.104664            0.742753                0.09
+[   90%      ]     9            0.094489            0.104554            0.742968                0.09
+[  100%      ]    10            0.092736            0.104477            0.743049                0.09
+[------------] Average log_loss: 0.105305
+[------------] Average AUC: 0.745739
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 5.23 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.24 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 48.73 MB
+[------------] Time cost for model initial: 0.31 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.113309            0.106652            0.735890                0.08
+[   20%      ]     2            0.110119            0.106022            0.736863                0.08
+[   30%      ]     3            0.108541            0.105838            0.736899                0.08
+[   40%      ]     4            0.107332            0.105707            0.737368                0.08
+[   50%      ]     5            0.106266            0.105560            0.737271                0.08
+[   60%      ]     6            0.105291            0.105536            0.738425                0.08
+[   70%      ]     7            0.104433            0.105412            0.736517                0.08
+[   80%      ]     8            0.103575            0.105372            0.736159                0.08
+[   90%      ]     9            0.102830            0.105323            0.735679                0.08
+[  100%      ]    10            0.102077            0.105309            0.735845                0.09
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.111223            0.112887            0.718788                0.08
+[   20%      ]     2            0.108016            0.112361            0.725385                0.08
+[   30%      ]     3            0.106500            0.112175            0.725641                0.08
+[   40%      ]     4            0.105290            0.111979            0.726008                0.08
+[   50%      ]     5            0.104241            0.111847            0.725498                0.08
+[   60%      ]     6            0.103296            0.111736            0.725861                0.08
+[   70%      ]     7            0.102416            0.111692            0.725462                0.08
+[   80%      ]     8            0.101597            0.111671            0.725334                0.08
+[   90%      ]     9            0.100873            0.111573            0.725013                0.08
+[  100%      ]    10            0.100141            0.111519            0.724484                0.08
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.111220            0.112938            0.716576                0.08
+[   20%      ]     2            0.108044            0.112191            0.718572                0.08
+[   30%      ]     3            0.106509            0.111950            0.719580                0.08
+[   40%      ]     4            0.105289            0.111754            0.717780                0.08
+[   50%      ]     5            0.104221            0.111662            0.719554                0.08
+[   60%      ]     6            0.103287            0.111541            0.718953                0.08
+[   70%      ]     7            0.102400            0.111438            0.718696                0.10
+[   80%      ]     8            0.101588            0.111388            0.718761                0.12
+[   90%      ]     9            0.100822            0.111349            0.718064                0.12
+[  100%      ]    10            0.100089            0.111323            0.718213                0.12
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.112249            0.109661            0.730732                0.08
+[   20%      ]     2            0.109020            0.109179            0.731915                0.08
+[   30%      ]     3            0.107541            0.108846            0.734196                0.08
+[   40%      ]     4            0.106332            0.108714            0.732438                0.08
+[   50%      ]     5            0.105277            0.108589            0.732125                0.08
+[   60%      ]     6            0.104350            0.108494            0.731075                0.08
+[   70%      ]     7            0.103450            0.108388            0.730769                0.08
+[   80%      ]     8            0.102647            0.108318            0.730341                0.08
+[   90%      ]     9            0.101889            0.108228            0.729947                0.08
+[  100%      ]    10            0.101170            0.108182            0.729378                0.08
+[------------] Average log_loss: 0.109084
+[------------] Average AUC: 0.726980
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 4.82 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.22 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 96.46 MB
+[------------] Time cost for model initial: 0.58 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.110749            0.102693            0.746381                0.08
+[   20%      ]     2            0.105326            0.101450            0.756401                0.08
+[   30%      ]     3            0.102140            0.101051            0.757737                0.09
+[   40%      ]     4            0.098596            0.100985            0.758033                0.09
+[   50%      ]     5            0.092810            0.101066            0.756317                0.09
+[   60%      ]     6            0.081032            0.101404            0.752284                0.09
+[   70%      ]     7            0.060373            0.102932            0.741312                0.09
+[   80%      ]     8            0.037665            0.108104            0.716501                0.09
+[   90%      ]     9            0.022056            0.114631            0.698507                0.09
+[  100%      ]    10            0.013635            0.121573            0.691737                0.09
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108664            0.109167            0.731359                0.09
+[   20%      ]     2            0.103234            0.107845            0.744857                0.10
+[   30%      ]     3            0.100150            0.107363            0.749056                0.09
+[   40%      ]     4            0.096705            0.107151            0.751210                0.09
+[   50%      ]     5            0.091020            0.106946            0.752504                0.09
+[   60%      ]     6            0.079365            0.106852            0.751422                0.09
+[   70%      ]     7            0.059093            0.108144            0.742653                0.09
+[   80%      ]     8            0.037136            0.113058            0.723035                0.09
+[   90%      ]     9            0.022311            0.119876            0.706953                0.09
+[  100%      ]    10            0.014359            0.126662            0.699956                0.09
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108640            0.109513            0.725688                0.11
+[   20%      ]     2            0.103234            0.108117            0.739981                0.12
+[   30%      ]     3            0.100148            0.107593            0.744160                0.11
+[   40%      ]     4            0.096737            0.107550            0.745129                0.11
+[   50%      ]     5            0.091544            0.107699            0.744452                0.11
+[   60%      ]     6            0.081535            0.107647            0.744256                0.10
+[   70%      ]     7            0.064008            0.108665            0.737898                0.11
+[   80%      ]     8            0.042372            0.112588            0.723000                0.10
+[   90%      ]     9            0.025078            0.119278            0.709054                0.11
+[  100%      ]    10            0.015214            0.125705            0.703713                0.10
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109584            0.106161            0.733154                0.09
+[   20%      ]     2            0.104119            0.105128            0.740143                0.09
+[   30%      ]     3            0.100963            0.104639            0.741545                0.09
+[   40%      ]     4            0.097450            0.104503            0.741097                0.09
+[   50%      ]     5            0.091738            0.104616            0.740406                0.09
+[   60%      ]     6            0.080337            0.104483            0.740799                0.10
+[   70%      ]     7            0.060651            0.105084            0.738830                0.10
+[   80%      ]     8            0.038557            0.108851            0.730440                0.09
+[   90%      ]     9            0.022892            0.115009            0.719314                0.10
+[  100%      ]    10            0.014468            0.121210            0.714767                0.09
+[------------] Average log_loss: 0.123787
+[------------] Average AUC: 0.702543
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 6.61 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.25 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 96.46 MB
+[------------] Time cost for model initial: 0.64 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.110757            0.102719            0.746060                0.10
+[   20%      ]     2            0.105372            0.101395            0.756786                0.11
+[   30%      ]     3            0.102226            0.101063            0.758106                0.10
+[   40%      ]     4            0.098808            0.101004            0.758289                0.09
+[   50%      ]     5            0.093390            0.100974            0.757240                0.10
+[   60%      ]     6            0.082658            0.101212            0.753625                0.10
+[   70%      ]     7            0.063628            0.102290            0.744746                0.10
+[   80%      ]     8            0.041411            0.106435            0.723942                0.10
+[   90%      ]     9            0.024851            0.112241            0.704772                0.10
+[  100%      ]    10            0.015507            0.118361            0.696727                0.09
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108659            0.109189            0.730813                0.09
+[   20%      ]     2            0.103263            0.107844            0.745229                0.09
+[   30%      ]     3            0.100220            0.107406            0.748927                0.09
+[   40%      ]     4            0.096864            0.107076            0.751616                0.09
+[   50%      ]     5            0.091522            0.107072            0.752242                0.10
+[   60%      ]     6            0.080888            0.106760            0.752133                0.09
+[   70%      ]     7            0.062027            0.107709            0.745069                0.10
+[   80%      ]     8            0.040337            0.111704            0.728315                0.09
+[   90%      ]     9            0.024703            0.117750            0.712561                0.09
+[  100%      ]    10            0.015922            0.123708            0.705867                0.10
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108653            0.109388            0.726322                0.08
+[   20%      ]     2            0.103249            0.108080            0.740333                0.09
+[   30%      ]     3            0.100151            0.107675            0.743661                0.09
+[   40%      ]     4            0.096812            0.107541            0.745061                0.09
+[   50%      ]     5            0.091823            0.107596            0.744850                0.09
+[   60%      ]     6            0.082479            0.107573            0.744507                0.09
+[   70%      ]     7            0.066190            0.108482            0.738417                0.09
+[   80%      ]     8            0.045493            0.111576            0.725570                0.09
+[   90%      ]     9            0.028049            0.117434            0.710642                0.09
+[  100%      ]    10            0.017453            0.123390            0.703886                0.09
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109603            0.106063            0.733593                0.09
+[   20%      ]     2            0.104146            0.105138            0.739653                0.09
+[   30%      ]     3            0.101057            0.104598            0.741577                0.09
+[   40%      ]     4            0.097696            0.104496            0.741475                0.11
+[   50%      ]     5            0.092358            0.104497            0.741205                0.10
+[   60%      ]     6            0.081994            0.104418            0.741289                0.26
+[   70%      ]     7            0.063760            0.104716            0.740266                0.30
+[   80%      ]     8            0.042018            0.107673            0.732870                0.14
+[   90%      ]     9            0.025339            0.113010            0.722944                0.37
+[  100%      ]    10            0.015931            0.118458            0.719260                0.46
+[------------] Average log_loss: 0.120979
+[------------] Average AUC: 0.706435
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 7.84 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.34 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 96.46 MB
+[------------] Time cost for model initial: 0.71 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.110826            0.102851            0.744310                0.32
+[   20%      ]     2            0.105618            0.101516            0.755891                0.14
+[   30%      ]     3            0.102685            0.101057            0.758704                0.11
+[   40%      ]     4            0.099863            0.100796            0.760062                0.12
+[   50%      ]     5            0.096283            0.100749            0.760152                0.12
+[   60%      ]     6            0.090579            0.100792            0.759046                0.12
+[   70%      ]     7            0.080883            0.100721            0.756892                0.12
+[   80%      ]     8            0.066659            0.101353            0.752064                0.10
+[   90%      ]     9            0.050929            0.102661            0.743042                0.11
+[  100%      ]    10            0.037011            0.105322            0.730891                0.11
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108728            0.109349            0.729675                0.11
+[   20%      ]     2            0.103470            0.108064            0.743849                0.21
+[   30%      ]     3            0.100664            0.107429            0.748861                0.16
+[   40%      ]     4            0.097958            0.107169            0.751087                0.12
+[   50%      ]     5            0.094497            0.106973            0.753003                0.11
+[   60%      ]     6            0.089009            0.106710            0.754646                0.10
+[   70%      ]     7            0.079733            0.106486            0.754339                0.13
+[   80%      ]     8            0.066162            0.106678            0.752457                0.17
+[   90%      ]     9            0.050861            0.107916            0.746394                0.18
+[  100%      ]    10            0.037372            0.110355            0.736189                0.14
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108731            0.109565            0.724842                0.09
+[   20%      ]     2            0.103471            0.108276            0.738337                0.11
+[   30%      ]     3            0.100678            0.107767            0.742939                0.09
+[   40%      ]     4            0.097935            0.107479            0.745434                0.10
+[   50%      ]     5            0.094644            0.107364            0.746796                0.64
+[   60%      ]     6            0.089557            0.107284            0.747270                0.15
+[   70%      ]     7            0.081266            0.107369            0.746718                0.17
+[   80%      ]     8            0.068963            0.107638            0.745330                0.15
+[   90%      ]     9            0.054004            0.108901            0.739390                0.17
+[  100%      ]    10            0.039784            0.111320            0.730467                0.17
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109670            0.106211            0.733320                0.10
+[   20%      ]     2            0.104371            0.105243            0.739581                0.10
+[   30%      ]     3            0.101530            0.104664            0.742016                0.09
+[   40%      ]     4            0.098793            0.104424            0.742452                0.10
+[   50%      ]     5            0.095316            0.104387            0.742726                0.25
+[   60%      ]     6            0.089895            0.104285            0.743255                0.16
+[   70%      ]     7            0.080758            0.104069            0.743348                0.12
+[   80%      ]     8            0.067482            0.104140            0.743213                0.13
+[   90%      ]     9            0.052476            0.105066            0.740137                0.15
+[  100%      ]    10            0.038864            0.106939            0.735152                0.31
+[------------] Average log_loss: 0.108484
+[------------] Average AUC: 0.733175
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 9.69 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.34 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 96.46 MB
+[------------] Time cost for model initial: 0.91 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.111372            0.103678            0.737803                0.11
+[   20%      ]     2            0.106810            0.102642            0.747849                0.11
+[   30%      ]     3            0.104643            0.102129            0.751335                0.11
+[   40%      ]     4            0.102944            0.101835            0.753538                0.10
+[   50%      ]     5            0.101419            0.101605            0.754392                0.09
+[   60%      ]     6            0.099958            0.101510            0.755089                0.10
+[   70%      ]     7            0.098477            0.101324            0.755045                0.09
+[   80%      ]     8            0.096890            0.101284            0.755235                0.10
+[   90%      ]     9            0.095159            0.101182            0.755189                0.10
+[  100%      ]    10            0.093125            0.101117            0.755510                0.09
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109266            0.110119            0.725749                0.09
+[   20%      ]     2            0.104690            0.109093            0.736428                0.09
+[   30%      ]     3            0.102544            0.108684            0.740029                0.09
+[   40%      ]     4            0.100856            0.108336            0.742162                0.09
+[   50%      ]     5            0.099348            0.108183            0.743134                0.09
+[   60%      ]     6            0.097932            0.108027            0.743870                0.14
+[   70%      ]     7            0.096476            0.107919            0.744246                0.11
+[   80%      ]     8            0.094909            0.107906            0.744536                0.09
+[   90%      ]     9            0.093168            0.107772            0.745087                0.09
+[  100%      ]    10            0.091143            0.107686            0.745054                0.10
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.109212            0.110314            0.720238                0.11
+[   20%      ]     2            0.104673            0.109099            0.730999                0.13
+[   30%      ]     3            0.102474            0.108684            0.734849                0.14
+[   40%      ]     4            0.100782            0.108409            0.736247                0.12
+[   50%      ]     5            0.099262            0.108239            0.738164                0.10
+[   60%      ]     6            0.097834            0.108093            0.738764                0.10
+[   70%      ]     7            0.096380            0.108026            0.739176                0.10
+[   80%      ]     8            0.094800            0.107966            0.739647                0.09
+[   90%      ]     9            0.093060            0.107927            0.739620                0.09
+[  100%      ]    10            0.091057            0.107851            0.739899                0.09
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.110209            0.107036            0.731427                0.09
+[   20%      ]     2            0.105613            0.106076            0.737850                0.10
+[   30%      ]     3            0.103478            0.105548            0.740421                0.09
+[   40%      ]     4            0.101801            0.105247            0.741455                0.09
+[   50%      ]     5            0.100291            0.105061            0.741976                0.10
+[   60%      ]     6            0.098879            0.104892            0.742380                0.17
+[   70%      ]     7            0.097433            0.104720            0.742756                0.09
+[   80%      ]     8            0.095900            0.104655            0.742684                0.10
+[   90%      ]     9            0.094220            0.104538            0.742890                0.09
+[  100%      ]    10            0.092297            0.104451            0.742840                0.11
+[------------] Average log_loss: 0.105276
+[------------] Average AUC: 0.745826
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 7.54 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[ WARNING    ] Cross-validation doesn't support early-stopping. xLearn has already close early-stopping.
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_0.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_1.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_2.bin) found. Skip converting text to binary.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (./train.txt_3.bin) found. Skip converting text to binary.
+[------------] Number of Feature: 130342
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.25 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 96.46 MB
+[------------] Time cost for model initial: 0.64 (sec)
+[ ACTION     ] Start to train ...
+[ ACTION     ] Cross-validation: 1/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.113372            0.106746            0.735797                0.08
+[   20%      ]     2            0.110111            0.106034            0.736759                0.09
+[   30%      ]     3            0.108556            0.105810            0.736854                0.09
+[   40%      ]     4            0.107341            0.105698            0.737260                0.09
+[   50%      ]     5            0.106276            0.105601            0.737434                0.09
+[   60%      ]     6            0.105309            0.105505            0.737562                0.10
+[   70%      ]     7            0.104434            0.105428            0.736595                0.09
+[   80%      ]     8            0.103580            0.105402            0.736092                0.09
+[   90%      ]     9            0.102844            0.105342            0.735753                0.10
+[  100%      ]    10            0.102081            0.105332            0.735672                0.15
+[ ACTION     ] Cross-validation: 2/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.111228            0.112893            0.717501                0.13
+[   20%      ]     2            0.108009            0.112349            0.724686                0.10
+[   30%      ]     3            0.106502            0.112138            0.725315                0.09
+[   40%      ]     4            0.105306            0.111943            0.726444                0.10
+[   50%      ]     5            0.104234            0.111867            0.725599                0.10
+[   60%      ]     6            0.103306            0.111725            0.726112                0.09
+[   70%      ]     7            0.102435            0.111679            0.725723                0.29
+[   80%      ]     8            0.101611            0.111655            0.725333                0.13
+[   90%      ]     9            0.100869            0.111593            0.724798                0.12
+[  100%      ]    10            0.100150            0.111531            0.724673                0.13
+[ ACTION     ] Cross-validation: 3/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.111219            0.112882            0.715704                0.13
+[   20%      ]     2            0.108034            0.112252            0.719251                0.11
+[   30%      ]     3            0.106519            0.111974            0.719489                0.09
+[   40%      ]     4            0.105310            0.111777            0.717762                0.10
+[   50%      ]     5            0.104246            0.111646            0.718966                0.22
+[   60%      ]     6            0.103295            0.111559            0.718406                0.14
+[   70%      ]     7            0.102417            0.111459            0.719138                0.11
+[   80%      ]     8            0.101601            0.111426            0.718404                0.10
+[   90%      ]     9            0.100823            0.111342            0.718115                0.11
+[  100%      ]    10            0.100091            0.111323            0.718023                0.10
+[ ACTION     ] Cross-validation: 4/4:
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.112268            0.109796            0.728379                0.22
+[   20%      ]     2            0.109040            0.109176            0.732604                0.16
+[   30%      ]     3            0.107545            0.108872            0.734362                0.33
+[   40%      ]     4            0.106348            0.108751            0.732110                0.24
+[   50%      ]     5            0.105291            0.108597            0.732219                0.10
+[   60%      ]     6            0.104353            0.108504            0.731092                0.11
+[   70%      ]     7            0.103467            0.108399            0.730801                0.10
+[   80%      ]     8            0.102662            0.108334            0.730080                0.11
+[   90%      ]     9            0.101900            0.108227            0.729717                0.10
+[  100%      ]    10            0.101162            0.108184            0.729722                0.20
+[------------] Average log_loss: 0.109093
+[------------] Average AUC: 0.727022
+[ ACTION     ] Finish Cross-Validation
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 8.57 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[------------] xLearn uses 8 threads for training task.
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (train.txt.bin) NOT found. Convert text file to binary file.
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (test.txt.bin) NOT found. Convert text file to binary file.
+[------------] Number of Feature: 150550
+[------------] Number of Field: 6
+[------------] Time cost for reading problem: 0.81 (sec)
+[ ACTION     ] Initialize model ...
+[------------] Model size: 56.28 MB
+[------------] Time cost for model initial: 0.35 (sec)
+[ ACTION     ] Start to train ...
+[------------] Epoch      Train log_loss       Test log_loss            Test AUC     Time cost (sec)
+[   10%      ]     1            0.108753            0.146031            0.761678                0.08
+[   20%      ]     2            0.103748            0.143477            0.770341                0.09
+[   30%      ]     3            0.101058            0.142610            0.773703                0.09
+[   40%      ]     4            0.098461            0.142548            0.774406                0.10
+[   50%      ]     5            0.095245            0.142638            0.775899                0.20
+[   60%      ]     6            0.090200            0.142623            0.776661                0.10
+[   70%      ]     7            0.081970            0.142583            0.776900                0.09
+[   80%      ]     8            0.069926            0.143813            0.776369                0.17
+[   90%      ]     9            0.055881            0.146218            0.772749                0.24
+[  100%      ]    10            0.042711            0.149598            0.768367                0.12
+[ ACTION     ] Early-stopping at epoch 7, best AUC: 0.776900
+[ ACTION     ] Start to save model ...
+[------------] Model file: ./model.out
+[------------] Time cost for saving model: 0.05 (sec)
+[ ACTION     ] Finish training
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 2.59 (sec)
+----------------------------------------------------------------------------------------------
+           _
+          | |
+     __  _| |     ___  __ _ _ __ _ __
+     \ \/ / |    / _ \/ _` | '__| '_ \
+      >  <| |___|  __/ (_| | |  | | | |
+     /_/\_\_____/\___|\__,_|_|  |_| |_|
+
+        xLearn   -- 0.44 Version --
+----------------------------------------------------------------------------------------------
+
+[------------] xLearn uses 8 threads for prediction task.
+[ ACTION     ] Load model ...
+[------------] Load model from ./model.out
+[------------] Loss function: cross-entropy
+[------------] Score function: ffm
+[------------] Number of Feature: 150550
+[------------] Number of K: 8
+[------------] Number of field: 6
+[------------] Time cost for loading model: 0.03 (sec)
+[ ACTION     ] Read Problem ...
+[------------] First check if the text file has been already converted to binary format.
+[------------] Binary file (test.txt.bin) found. Skip converting text to binary.
+[------------] Time cost for reading problem: 0.01 (sec)
+[ ACTION     ] Start to predict ...
+[------------] The test loss is: 0.142583
+[ ACTION     ] Clear the xLearn environment ...
+[------------] Total time cost: 0.16 (sec)
