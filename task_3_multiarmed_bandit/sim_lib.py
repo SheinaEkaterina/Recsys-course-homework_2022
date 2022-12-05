@@ -1,3 +1,4 @@
+
 import numpy as np
 import pandas as pd
 
@@ -26,6 +27,7 @@ def simulation(policy: Callable, n=10 ** 6, initial_banners=9, seed=None):
     regret = 0
     max_index = initial_banners
     borning_rate = initial_banners * (1 - np.exp(-1 / MU))
+
     random_state = seed
 
     for i in range(n):
@@ -49,6 +51,7 @@ def simulation(policy: Callable, n=10 ** 6, initial_banners=9, seed=None):
         state = state[state['lifetime'] > 0]
         if random_state:
             random_state = 7 * random_state % MAX_RANDOM
+
 
         if not i % MONITORING_FREQ:
             print('{} impressions have been simulated'.format(i + 1))
