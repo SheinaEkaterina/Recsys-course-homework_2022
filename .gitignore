@@ -1,1 +1,4 @@
-data/
+data/raw/*
+!data/raw/.keep
+data/processed/*
+!data/processed/.keep
