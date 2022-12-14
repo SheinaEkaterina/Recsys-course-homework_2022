@@ -33,6 +33,7 @@ def main(data_dir: str | Path):
 def preprocess_and_split(df: pd.DataFrame) -> pd.DataFrame:
     # drop useless data
     df = df.drop(columns=["oaid_hash", "campaign_clicks", "impressions"])
+    df = df.dropna(axis=0, how="any")
     mask = df["banner_id"] == df["banner_id0"]
     df = df[mask]
 
