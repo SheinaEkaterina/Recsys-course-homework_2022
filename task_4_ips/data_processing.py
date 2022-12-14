@@ -9,7 +9,7 @@ from sklearn.preprocessing import OneHotEncoder
 Array = Union[pd.Series, np.ndarray]
 ONE_HOT_KWARGS = {
     "zone_id": dict(min_frequency=100),
-    "banner_id": dict(min_frequency=20),
+    "banner_id": dict(min_frequency=100),
     "os_id": dict(max_categories=8),
     "country_id": {}
 }
@@ -54,8 +54,8 @@ def feature_engineering(df_train: pd.DataFrame, df_test: pd.DataFrame
     # extract weekday and hour
     for df, dct in zip((df_train, df_test), [train_data, test_data]):
         dt = pd.to_datetime(df["date_time"])
-        dct["weekday"] = dt.dt.weekday.to_numpy()
-        dct["hour"] = dt.dt.hour.to_numpy()
+        dct["weekday"] = dt.dt.weekday.to_numpy().reshape(-1, 1)
+        dct["hour"] = dt.dt.hour.to_numpy().reshape(-1, 1)
 
     # encode categorical features
     for col, kwargs in ONE_HOT_KWARGS.items():
@@ -72,7 +72,7 @@ def feature_engineering(df_train: pd.DataFrame, df_test: pd.DataFrame
 
     # keep some columns unchanged
     for df, dct in zip((df_train, df_test), [train_data, test_data]):
-        for col in ("coeff_sum0", "coeff_sum1", "g0", "g1"):
+        for col in ("coeff_sum0", "coeff_sum1", "g0", "g1", "clicks"):
             dct[col] = df[col].to_numpy().reshape(-1, 1)
 
     return train_data, test_data
