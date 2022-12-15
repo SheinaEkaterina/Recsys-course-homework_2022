@@ -4,8 +4,10 @@ import numpy as np
 import math
 
 
-def feature_engineering(data: pd.DataFrame) -> pd.DataFrame:
+
+def feature_engineering(data: pd.DataFrame):
     """Немного поменяем функцию создания фичей из 1 дз"""
+    data = data[::20]
     data = data.fillna(-1)
     # превратим date_time из строки в datetime тип данных:
     data['date_time'] = pd.to_datetime(data['date_time'])
@@ -35,40 +37,29 @@ def feature_engineering(data: pd.DataFrame) -> pd.DataFrame:
     data['month'] = data['date_time'].dt.month
     # Отнормируем
     data['month'] = data['month'] - 9
+    coefs = data[['date_time', 'g0', 'g1', 'coeff_sum0', 'coeff_sum1']]
+    coefs = coefs[coefs['date_time'] >= "2021-10-02 00:00:00"].drop(['date_time'], axis=1)
+    features = [ 'banner_id','banner_id0' , 'banner_id1', 'os_id', 'country_id', 'date', 'time_of_day', 'is_weekend',
+                 'month', 'clicks']
 
-    # Создадим копию колонки с датой, чтобы не потерять ее при one-hot encoding
-    # (она понадобится при разбиениии на тест и трейн).
-    # После разбиения на тест и трейн уже уберем и ее
-    data['date_copy'] = data['date']
-    return data
+    return data.loc[:, features], coefs
 
-
-def one_hot(data):
-    other_cat_features = ['os_id', 'country_id', 'banner_id']
-    data = pd.get_dummies(data, columns=other_cat_features, drop_first=True)
-    return data
 
 
 def train_test_split(data: pd.DataFrame):
     last_day = data['date'].max()
     test = data.loc[data['date'] == last_day]
     train = data.loc[data['date'] < last_day]
-    features = [ 'zone_id', 'banner_id', 'os_id', 'country_id', 'date', 'time_of_day',
-                 'banner_id0', 'g0', 'coeff_sum0', 'banner_id1', 'coeff_sum1']
-
-    X_train = train.loc[:, features]
+    X_train = train.drop(columns=['clicks'])
     Y_train = train.loc[:, 'clicks']
     # тестовая выборка с banner_id0
-    X_test0 = test.loc[:, features]
+    X_test0 = test.drop(columns=['clicks'])
     # тестовая выборка с banner_id1
-    X_test1 = test.loc[:, features]
+    X_test1 = test.drop(columns=['clicks'])
     X_test0 = X_test0.drop(columns=['banner_id1', 'banner_id'])
     X_test1 = X_test1.drop(columns=['banner_id', 'banner_id0'])
     X_test1 = X_test1.rename(columns={"banner_id1": "banner_id"})
     X_test0 = X_test0.rename(columns={"banner_id0": "banner_id"})
     Y_test = test.loc[:, 'clicks']
 
-    coefs = data[['date_time', 'g0', 'g1', 'coeff_sum0', 'coeff_sum1']]
-    coefs = coefs[coefs['date_time'] >= "2021-10-02 00:00:00"].drop(['date_time'], axis=1)
-
-    return X_train, Y_train, X_test0, X_test1, Y_test, coefs
+    return X_train, Y_train, X_test0, X_test1, Y_test
