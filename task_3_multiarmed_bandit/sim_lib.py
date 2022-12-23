@@ -45,8 +45,8 @@ def simulation(policy: Callable, n=10 ** 6, initial_banners=9, seed=None, ts_exp
         reward = bernoulli.rvs(p)
         state.loc[index, 'impressions'] += 1
         state.loc[index, 'clicks'] += reward
-        state.loc[index, 'alpha'] += reward
-        state.loc[index, 'beta'] += ts_explore * (1 - reward)
+        state.loc[index, 'alpha'] += reward/ts_explore
+        state.loc[index, 'beta'] += (1 - reward)/ts_explore
         regret = regret + max(state['p']) - p
 
         state['lifetime'] = state['lifetime'] - 1
