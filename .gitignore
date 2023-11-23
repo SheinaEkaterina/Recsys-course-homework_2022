@@ -1,0 +1,4 @@
+data/
+task_2_fm/lightning_logs/
+task_2_fm/checkpoints/
+.idea/
